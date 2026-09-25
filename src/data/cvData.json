@@ -1,0 +1,482 @@
+{
+  "personal": {
+    "name": "Moisés Isaías Ortíz Gracia",
+    "role": "Desarrollador web fullstack",
+    "email": "moises.ortiz@utelvt.edu.ec",
+    "phone": "+593 0969718160",
+    "address": "Carlos Mantilla - 282 170201 Quito",
+    "birthDate": "23 de marzo de 1998",
+    "location": "Quito - Ecuador",
+    "license": "Tipo B - Ecuador",
+    "gender": "Masculino",
+    "nationality": "Ecuatoriano",
+    "civilStatus": "Soltero",
+    "portfolio": "portafolio-moisesisaiaso.netlify.app",
+    "portfolioUrl": "https://portafolio-moisesisaiaso.netlify.app",
+    "github": "github.com/moisesisaiaso",
+    "githubUrl": "https://github.com/moisesisaiaso"
+  },
+  "profileSummary": "Apasionado por el desarrollo web, especializado en el stack PERN (PostgreSQL, Express, React, Node.js). Disfruto creando soluciones innovadoras que mejoren la experiencia del usuario y contribuyan al éxito de los proyectos en los que participo.",
+  "education": [
+    {
+      "id": "edu-ingenieria",
+      "title": "Ingeniería en Tecnologías de la Información y la Comunicación",
+      "period": "feb 2019 - oct 2023",
+      "institution": "Universidad Técnica Luis Vargas Torres de Esmeraldas, Esmeraldas",
+      "certificateLink": "https://mega.nz/file/dvclXRrI#m4s_562tPZV431e2EOl6i-D4N-PAuyzhZCGX1K2UCNU",
+      "certificateId": "cert-universidad",
+      "description": "Título universitario de tercer nivel en Tecnologías de la Información y la Comunicación con sólidos fundamentos en ingeniería de software, arquitectura de sistemas y redes."
+    },
+    {
+      "id": "edu-academlo-frontend",
+      "title": "Desarrollador frontend",
+      "period": "abr 2022 - jul 2022",
+      "institution": "ACADEMLO, Online",
+      "description": "Durante el curso de Desarrollo Web Frontend, desarrollé habilidades avanzadas en HTML, CSS y JavaScript, y me especialicé en la creación de interfaces interactivas utilizando React. Además, adquirí experiencia en la integración de APIs y en el uso de Git para el control de versiones, aplicando las mejores prácticas de desarrollo web para asegurar la accesibilidad de las aplicaciones.",
+      "certificateLink": "https://mega.nz/file/Bill1K4T#R2bR4_rrUr-DGlVYVaAqE_HBrVED7MfhcWEYeQ5EBkE",
+      "certificateId": "cert-academlo-frontend"
+    },
+    {
+      "id": "edu-academlo-backend",
+      "title": "Desarrollador backend",
+      "period": "oct 2022 - ene 2023",
+      "institution": "ACADEMLO, Online",
+      "description": "Durante el curso de Desarrollo Backend, aprendí a utilizar Node.js y Express para la creación de servidores. También adquirí experiencia en la gestión de bases de datos con PostgreSQL y Sequelize, en la implementación de sistemas de autenticación mediante JWT (JSON Web Tokens), y en la integración con aplicaciones frontend para crear soluciones completas y funcionales.",
+      "certificateLink": "https://mega.nz/file/tn91lBZI#au3Nxdhbj6D7B7Fz79EtuOFLEj8bSc2UnBq82Mo2Dsk",
+      "certificateId": "cert-academlo-backend"
+    }
+  ],
+  "experience": [
+    {
+      "id": "exp-m4managers-fullstack",
+      "title": "Desarrollador Web Fullstack",
+      "period": "jun 2026 - actualidad",
+      "location": "M4 Managers, Remoto",
+      "description": "Desarrollo y arquitectura de soluciones web corporativas y plataformas SaaS para las filiales del Grupo M4 (M4 Construcción, M4 Padel Tour, M4Locker, M4 Padel Club). Implementación de interfaces interactivas y reactivas con React y Tailwind CSS, backends con Node.js y Express, bases de datos PostgreSQL, MySQL y MongoDB, gestión multimedia en Cloudinary y despliegue en Hostinger."
+    },
+    {
+      "id": "exp-lima-restaurante",
+      "title": "Desarrollador Frontend",
+      "period": "feb 2024 - may 2024",
+      "location": "Remoto",
+      "description": "Desarrollo de una app web de reservas para un restaurante en Lima/Perú"
+    },
+    {
+      "id": "exp-epmapse-fullstack",
+      "title": "Desarrollador fullstack",
+      "period": "oct 2022 - nov 2022",
+      "location": "EPMAPSE, Esmeraldas",
+      "description": "Desarrollo de una aplicación web médica para la Empresa de Agua Potable EPMAPSE en la ciudad de Esmeraldas"
+    },
+    {
+      "id": "exp-utelvt-pasantias",
+      "title": "Pasantías",
+      "period": "mar 2022 - may 2022",
+      "location": "UTELVT, Esmeraldas",
+      "description": "Prácticas preprofesionales Apoyo administrativo, transcripción para el acta de los audios recolectados en las juntas de altos mandos, revisión de record académico de los estudiantes a egresar"
+    },
+    {
+      "id": "exp-clim-docente",
+      "title": "Docente - desarrollador",
+      "period": "jun 2023 - ago 2023",
+      "location": "Esmeraldas",
+      "description": "Docente en curso de creación de videojuegos con Scratch y desarrollador de página web de los Cursos CLIM"
+    }
+  ],
+  "certificates": [
+    {
+      "id": "cert-universidad",
+      "title": "Ingeniería en Tecnologías de la Información y la Comunicación",
+      "period": "feb 2019 - oct 2023",
+      "issuer": "Universidad Técnica Luis Vargas Torres de Esmeraldas",
+      "duration": "5 años académicos",
+      "description": "Grado Académico y Título Profesional otorgado tras culminar satisfactoriamente la malla curricular y proyecto de titulación en Tecnologías de la Información.",
+      "link": "https://mega.nz/file/dvclXRrI#m4s_562tPZV431e2EOl6i-D4N-PAuyzhZCGX1K2UCNU",
+      "category": "web-development",
+      "code": "UTELVT-TIC-2023-0891",
+      "imageUrl": "/certificates/cert-universidad.png"
+    },
+    {
+      "id": "cert-fibra-optica",
+      "title": "Instalación, mantenimiento y reparación de redes de fibra óptica GPON FTTH",
+      "period": "jul 2025",
+      "issuer": "CPA (Capacitación Profesional Avanzada)",
+      "duration": "40 horas",
+      "description": "Certificado con una duración de 40 horas, el curso se desarrollo en las instalaciones de CPA en la ciudad de Quito, un curso práctico desde las instalaciones y en campo abierto.",
+      "link": "https://mega.nz/file/wu00VLpK#6Vafrlr7AiJFpywbJMV25u6rEAoTkmzBBW4Z36JK9Kk",
+      "category": "telecom",
+      "code": "CPA-FO-GPON-7721",
+      "imageUrl": "/certificates/cert-fibra-optica.jpg"
+    },
+    {
+      "id": "cert-academlo-fullstack",
+      "title": "Desarrollador web fullstack - bootcamp",
+      "period": "abr 2024",
+      "issuer": "Academlo",
+      "duration": "Bootcamp Intensivo",
+      "description": "Certificación en Desarrollo Web Fullstack utilizando tecnología del PERN stack",
+      "link": "https://mega.nz/file/trNwnCTJ#2AjbcwqYUv0VyWtUTtxMTiwJfBjRqtDQ1huA8hTe1E4",
+      "category": "web-development",
+      "code": "ACD-FULLSTACK-2024-0412",
+      "imageUrl": "/certificates/cert-academlo-fullstack.png"
+    },
+    {
+      "id": "cert-academlo-backend",
+      "title": "Desarrollador backend - bootcamp Academlo",
+      "period": "dic 2023",
+      "issuer": "Academlo",
+      "duration": "Bootcamp Especializado",
+      "description": "Certificación en Desarrollo Backend con Node.js, Express y PostgreSQL",
+      "link": "https://mega.nz/file/tn91lBZI#au3Nxdhbj6D7B7Fz79EtuOFLEj8bSc2UnBq82Mo2Dsk",
+      "category": "web-development",
+      "code": "ACD-BACKEND-2023-1205",
+      "imageUrl": "/certificates/cert-backend.png"
+    },
+    {
+      "id": "cert-academlo-frontend",
+      "title": "Desarrollador frontend - bootcamp Academlo",
+      "period": "sep 2023",
+      "issuer": "Academlo",
+      "duration": "Bootcamp Especializado",
+      "description": "Experiencia en desarrollo de interfaces de usuario utilizando React y su ecosistema.",
+      "link": "https://mega.nz/file/Bill1K4T#R2bR4_rrUr-DGlVYVaAqE_HBrVED7MfhcWEYeQ5EBkE",
+      "category": "web-development",
+      "code": "ACD-FRONTEND-2023-0918",
+      "imageUrl": "/certificates/cert-academlo-frontend.png"
+    },
+    {
+      "id": "cert-academlo-fundamentos",
+      "title": "Fundamentos de la programación - bootcamp",
+      "period": "jun 2023",
+      "issuer": "Academlo",
+      "duration": "Bootcamp Inicial",
+      "description": "Certificación en Fundamentos de Programación Web, enfocado en el uso de HTML, CSS y JavaScript.",
+      "link": "https://mega.nz/file/pn1iBD5R#kVv6hFCyncWyFIu6IsI3cZZP2DTiP4pLdK2m80dxZ08",
+      "category": "web-development",
+      "code": "ACD-FUND-2023-0630",
+      "imageUrl": "/certificates/cert-academlo-fundamentos.png"
+    },
+    {
+      "id": "cert-reparacion-pc",
+      "title": "Reparación de computadoras de escritorio y portátiles",
+      "period": "jul 2023",
+      "issuer": "Solari - Centro de Capacitación Técnica",
+      "duration": "60 horas",
+      "description": "Certificado en reparación de computadoras centrado en el diagnóstico y la resolución de problemas de software y hardware.",
+      "link": "https://mega.nz/file/Q7VBGYjQ#rRvMIsatFlr-OZRgTGXotkhkqIDvg0xAbIRG_dQ-JNs",
+      "category": "hardware",
+      "code": "SOLARI-HW-REP-2023-741",
+      "imageUrl": "/certificates/cert-reparacion-pc.png"
+    },
+    {
+      "id": "cert-scrum",
+      "title": "SCRUM Fundation Professional Certificate",
+      "period": "oct 2020",
+      "issuer": "CertiProf / Scrum.org Standard",
+      "duration": "Certificación Profesional Internacional",
+      "description": "Certificado en SCRUM con enfoque en metodologías ágiles para el desarrollo de software.",
+      "link": "https://mega.nz/file/gqsVSZhT#qHg2HAQpy5MoXx6KBQxa6OStt9yuaHD3qTlw1i8RBwk",
+      "category": "agile",
+      "code": "SFPC-AGILE-2020-99412",
+      "imageUrl": "/certificates/cert-scrum.png"
+    },
+    {
+      "id": "cert-ia-pedagogica",
+      "title": "Orientaciones para el uso pedagógico de herramientas de IA en el procesos de enseñanza aprendizaje",
+      "period": "ene 2025",
+      "issuer": "UNEXPO - Saberes / Organismo Educativo",
+      "duration": "40 horas",
+      "description": "Certificación en el uso pedagógico de herramientas de IA en el proceso de enseñanza aprendizaje.",
+      "link": "https://mega.nz/file/hnUGzDrI#r7Iv9oM4BjbNLDglivMqRpiR-g86BBNU6lYWq1aNqhI",
+      "category": "ai",
+      "code": "UNEXPO-IA-2025-0158",
+      "imageUrl": "/certificates/cert-ia-pedagogica.png"
+    }
+  ],
+  "skills": [
+    { "id": "sk-html-css", "name": "Maquetación HTML & CSS", "rating": 5, "category": "frontend" },
+    { "id": "sk-javascript", "name": "JavaScript", "rating": 4, "category": "frontend" },
+    { "id": "sk-typescript", "name": "TypeScript", "rating": 4, "category": "frontend" },
+    { "id": "sk-react", "name": "Desarrollo en React", "rating": 4, "category": "frontend" },
+    { "id": "sk-tailwind", "name": "Tailwind CSS", "rating": 5, "category": "frontend" },
+    { "id": "sk-node", "name": "Nodejs", "rating": 4, "category": "backend" },
+    { "id": "sk-express", "name": "Express", "rating": 4, "category": "backend" },
+    { "id": "sk-postgres", "name": "PostgreSQL", "rating": 4, "category": "database" },
+    { "id": "sk-mongodb", "name": "MongoDB (NoSQL)", "rating": 4, "category": "database" },
+    { "id": "sk-mysql", "name": "MySQL", "rating": 4, "category": "database" },
+    { "id": "sk-relational-db", "name": "Bases de datos relacionales", "rating": 4, "category": "database" },
+    { "id": "sk-sequelize", "name": "Sequelize ORM", "rating": 4, "category": "backend" },
+    { "id": "sk-jwt", "name": "JWT (Tokens de autenticación)", "rating": 4, "category": "backend" },
+    { "id": "sk-git", "name": "Control de versiones con Git", "rating": 4, "category": "tools" },
+    { "id": "sk-rest", "name": "Integración de APIs REST", "rating": 4, "category": "backend" },
+    { "id": "sk-cloudinary", "name": "Cloudinary", "rating": 4, "category": "cloud" },
+    { "id": "sk-hostinger", "name": "Hostinger (Deploy & Cloud)", "rating": 4, "category": "tools" },
+    { "id": "sk-responsive", "name": "Responsive Design", "rating": 4, "category": "frontend" },
+    {
+      "id": "sk-repair",
+      "name": "Reparación de computadoras (Hardware & Software)",
+      "rating": 4,
+      "category": "hardware"
+    }
+  ],
+  "hobbies": ["Musica", "Gimnasio"],
+  "aptitudes": [
+    "Adaptabilidad y aprendizaje rápido",
+    "Creatividad",
+    "Resolución de problemas",
+    "Empatía"
+  ],
+  "consentNote": "Doy mi consentimiento para el procesamiento de mis datos personales para el proceso de selección del puesto que solicito.",
+  "projects": [
+    {
+      "id": "proj-m4construccion",
+      "title": "M4 Construcción — Plataforma Inmobiliaria, Constructora & Club de Inversión",
+      "shortDescription": "Portal web corporativo de alta gama para empresa líder en construcción y desarrollo inmobiliario en Ecuador. Incluye catálogo de proyectos, bienes raíces y calculadora de ROI para inversionistas.",
+      "fullDescription": "Plataforma web integral para M4 Construcción (Ecuador), que integra portafolio de obras arquitectónicas y civiles, sistema de exhibición inmobiliaria con filtros por tipo de propiedad y modo (comprar/alquilar), y un club de inversión privada con calculadora de retorno de inversión (ROI) y agendamiento interactivo de citas.",
+      "coverImage": "/projects/m4construccion/01_inicio_hero.png",
+      "role": "Desarrollador Web Fullstack",
+      "period": "2024 - 2025",
+      "liveUrl": "https://m4construccion.com",
+      "githubUrl": "https://github.com/moisesisaiaso",
+      "technologies": [
+        { "name": "React", "category": "frontend" },
+        { "name": "TypeScript", "category": "frontend" },
+        { "name": "Tailwind CSS", "category": "frontend" },
+        { "name": "Vite", "category": "frontend" },
+        { "name": "Node.js", "category": "backend" },
+        { "name": "Express", "category": "backend" },
+        { "name": "PostgreSQL", "category": "database" },
+        { "name": "Cloudinary", "category": "cloud" },
+        { "name": "Hostinger", "category": "devops" },
+        { "name": "Git & GitHub", "category": "tool" }
+      ],
+      "sections": [
+        {
+          "title": "Inicio & Landing Corporativa",
+          "description": "Hero interactivo con propuesta de valor de M4 Construcción, acceso a las tres divisiones principales (Construcción, Bienes Raíces y Club de Inversión) y navegación responsiva.",
+          "imageUrl": "/projects/m4construccion/01_inicio_hero.png"
+        },
+        {
+          "title": "División de Construcción & Proyectos",
+          "description": "Exhibición de proyectos de obra civil, arquitectura comercial y residencial con detalles de especificaciones, renders y avance de construcción.",
+          "imageUrl": "/projects/m4construccion/02_construccion_proyectos.png"
+        },
+        {
+          "title": "Catálogo de Bienes Raíces & Propiedades",
+          "description": "Filtros dinámicos por tipo de inmueble (casas, departamentos, terrenos), modalidad de compra o alquiler, y modal interactivo para agendar citas.",
+          "imageUrl": "/projects/m4construccion/03_bienes_raices.png"
+        },
+        {
+          "title": "Club de Inversión & Calculadora ROI",
+          "description": "Módulo financiero para inversionistas con simulador de rendimiento, visualización de proyectos de inversión y solicitud de reportes de rentabilidad.",
+          "imageUrl": "/projects/m4construccion/04_club_inversion.png"
+        },
+        {
+          "title": "Sobre Nosotros & Filosofía Corporativa",
+          "description": "Sección institucional con la misión, visión, trayectoria y equipo directivo de la compañía constructora en Ecuador.",
+          "imageUrl": "/projects/m4construccion/05_sobre_nosotros.png"
+        }
+      ]
+    },
+    {
+      "id": "proj-m4padeltour",
+      "title": "M4 Padel Tour — Circuito Oficial & Gestión Deportiva de Pádel",
+      "shortDescription": "Plataforma deportiva integral para el circuito M4 Padel Tour en Ecuador. Incluye gestión de torneos, ranking oficial de jugadores en tiempo real, catálogo de clubes y perfiles de atletas.",
+      "fullDescription": "Solución digital desarrollada para profesionalizar y dinamizar el circuito de pádel en la región. La plataforma centraliza el calendario competitivo, las inscripciones de parejas, el sistema de puntuación y ranking oficial automatizado, perfiles con métricas de rendimiento por jugador, y el directorio de clubes y sedes con canchas homologadas.",
+      "coverImage": "/projects/m4padeltour/01_inicio_hero.png",
+      "role": "Desarrollador Web Fullstack",
+      "period": "2024 - 2025",
+      "liveUrl": "https://m4padeltour.com",
+      "githubUrl": "https://github.com/moisesisaiaso",
+      "technologies": [
+        { "name": "React", "category": "frontend" },
+        { "name": "TypeScript", "category": "frontend" },
+        { "name": "Tailwind CSS", "category": "frontend" },
+        { "name": "Vite", "category": "frontend" },
+        { "name": "Node.js", "category": "backend" },
+        { "name": "Express", "category": "backend" },
+        { "name": "PostgreSQL", "category": "database" },
+        { "name": "Cloudinary", "category": "cloud" },
+        { "name": "Hostinger", "category": "devops" },
+        { "name": "Git & GitHub", "category": "tool" }
+      ],
+      "sections": [
+        {
+          "title": "Inicio & Landing del Circuito Oficial",
+          "description": "Portada principal con diseño deportivo de alto impacto, cronograma de torneos próximos, accesos rápidos a rankings y llamado a la acción para jugadores y sponsors.",
+          "imageUrl": "/projects/m4padeltour/01_inicio_hero.png"
+        },
+        {
+          "title": "Módulo de Torneos & Categorías",
+          "description": "Visualización de fechas del tour, estados de inscripción (abierto, en curso, finalizado), reglamentos de competición y cuadros de partidos.",
+          "imageUrl": "/projects/m4padeltour/02_torneos.png"
+        },
+        {
+          "title": "Sistema de Ranking Oficial de Jugadores",
+          "description": "Tabla de clasificación interactiva con puntajes acumulados, posiciones por categorías (Open, 1ra a 5ta, Mixto) y estadísticas de victorias.",
+          "imageUrl": "/projects/m4padeltour/03_ranking.png"
+        },
+        {
+          "title": "Comunidad & Perfiles de Jugadores",
+          "description": "Directorio de atletas federados y amateurs con fotografías, categoría actual, club de procedencia y palmarés competitivo.",
+          "imageUrl": "/projects/m4padeltour/04_jugadores.png"
+        },
+        {
+          "title": "Directorio de Clubes & Sedes Afiliadas",
+          "description": "Fichas de clubes oficiales sede de las etapas del circuito, detalles de infraestructura de canchas, ubicación geográfica y contacto.",
+          "imageUrl": "/projects/m4padeltour/05_clubes.png"
+        }
+      ]
+    },
+    {
+      "id": "proj-m4managers",
+      "title": "M4 Managers — Agencia de Marketing Digital, Branding & Automatización IA",
+      "shortDescription": "Plataforma web de alto rendimiento para agencia internacional con sedes en Quito y Valencia. Destaca su flujo interactivo de agendamiento de reuniones con consultoría estratégica por etapas.",
+      "fullDescription": "Sitio web corporativo y ecosistema de captación para M4 Managers. Diseñado con una experiencia visual moderna y oscura, incorpora arquitectura reactiva avanzada para servicios de branding, desarrollo web y automatización con IA. Su componente estrella es el modal interactivo de Agendamiento de Consultoría Estratégica, que guía al prospecto a través de un diagnóstico inicial, selección dinámica de servicios y validación de requerimientos de proyecto.",
+      "coverImage": "/projects/m4managers/01_inicio_hero.png",
+      "role": "Desarrollador Web Fullstack",
+      "period": "2024 - 2025",
+      "liveUrl": "https://m4managers.com",
+      "githubUrl": "https://github.com/moisesisaiaso",
+      "technologies": [
+        { "name": "React", "category": "frontend" },
+        { "name": "TypeScript", "category": "frontend" },
+        { "name": "Tailwind CSS", "category": "frontend" },
+        { "name": "Vite", "category": "frontend" },
+        { "name": "Node.js", "category": "backend" },
+        { "name": "Express", "category": "backend" },
+        { "name": "MySQL", "category": "database" },
+        { "name": "Cloudinary", "category": "cloud" },
+        { "name": "Hostinger", "category": "devops" },
+        { "name": "Git & GitHub", "category": "tool" }
+      ],
+      "sections": [
+        {
+          "title": "Portada & Hero Branding de Alto Impacto",
+          "description": "Presentación visual premium con propuesta de valor de la agencia, tipografía estilizada y botón destacado para agendar reuniones estratégicas.",
+          "imageUrl": "/projects/m4managers/01_inicio_hero.png"
+        },
+        {
+          "title": "Modal Interactivo: Consultoría Estratégica (Paso 1)",
+          "description": "Flujo modal que se abre al pulsar 'Agendar Reunión'. Presenta los beneficios de la sesión de 30 minutos (auditoría inicial, análisis de marca y plan de acción) y activa el proceso de onboarding.",
+          "imageUrl": "/projects/m4managers/02_agendar_modal_bienvenida.png"
+        },
+        {
+          "title": "Formulario por Pasos & Selección de Servicios (Paso 2)",
+          "description": "Segundo paso del flujo de agendamiento con selector de categorías de servicio (Branding, Diseño Web, Automatización IA, Audiovisual, Social Media, Publicidad), presupuesto estimado y datos de contacto.",
+          "imageUrl": "/projects/m4managers/03_agendar_seleccion_servicios.png"
+        },
+        {
+          "title": "Módulo Especializado en Automatización con IA",
+          "description": "Sección técnica de servicios de inteligencia artificial orientada a la optimización de procesos operativos, chatbots y flujos de conversión digital.",
+          "imageUrl": "/projects/m4managers/04_automatizacion_ia.png"
+        },
+        {
+          "title": "Ecosistema Integral de Soluciones Digitales",
+          "description": "Catálogo completo de líneas de negocio y metodología estratégica para escalar marcas en mercados internacionales.",
+          "imageUrl": "/projects/m4managers/05_ecosistema_servicios.png"
+        }
+      ]
+    },
+    {
+      "id": "proj-m4locker",
+      "title": "M4Locker — Gestor Corporativo de Credenciales, Bóvedas & Auditoría de Seguridad",
+      "shortDescription": "Sistema web empresarial de gestión segura de contraseñas y accesos con control de roles (Empleado / Administrador), segmentación por filiales del Grupo M4, base de datos MySQL y registro de auditoría en tiempo real.",
+      "fullDescription": "Plataforma de ciberseguridad y custodia de credenciales corporativas desarrollada para centralizar los accesos a servicios críticos de las diferentes filiales del Grupo Corporativo M4 (M4 Construcción, M4 Managers, M4 Padel Tour). Implementa arquitectura de privilegios diferenciados (roles de empleado y superadministrador), bóvedas cifradas con SSL + AES-SHA, conexión a base de datos MySQL y módulo integral de auditoría de accesos para trazabilidad y cumplimiento confidencial.",
+      "coverImage": "/projects/m4locker/02_locker_vault_dashboard.png",
+      "role": "Desarrollador Web Fullstack",
+      "period": "2025 - 2026",
+      "liveUrl": "https://papayawhip-porpoise-696071.hostingersite.com",
+      "githubUrl": "https://github.com/moisesisaiaso",
+      "technologies": [
+        { "name": "React", "category": "frontend" },
+        { "name": "TypeScript", "category": "frontend" },
+        { "name": "Tailwind CSS", "category": "frontend" },
+        { "name": "Vite", "category": "frontend" },
+        { "name": "Node.js", "category": "backend" },
+        { "name": "Express", "category": "backend" },
+        { "name": "MySQL", "category": "database" },
+        { "name": "Cloudinary", "category": "cloud" },
+        { "name": "Hostinger", "category": "devops" },
+        { "name": "Git & GitHub", "category": "tool" }
+      ],
+      "sections": [
+        {
+          "title": "Portal de Acceso Corporativo & Autenticación Segura",
+          "description": "Pantalla de inicio de sesión con validación de credenciales cifradas, aviso legal de uso confidencial y políticas de auditoría.",
+          "imageUrl": "/projects/m4locker/01_login_corporativo.png"
+        },
+        {
+          "title": "Bóveda Principal (Locker Vault) & Estado de Seguridad",
+          "description": "Panel de control administrativo con monitoreo en vivo de estado de base de datos MySQL (puerto 3306 SSL/TLS), métricas de encriptación (AES-SHA), conteo de credenciales activas y selector de filiales M4.",
+          "imageUrl": "/projects/m4locker/02_locker_vault_dashboard.png"
+        },
+        {
+          "title": "Módulo de Gestión de Cuentas & Credenciales",
+          "description": "Administración centralizada de cuentas corporativas, generación de contraseñas de alta entropía, categorías de servicio y asignación de permisos por perfil.",
+          "imageUrl": "/projects/m4locker/03_gestion_cuentas.png"
+        },
+        {
+          "title": "Administración de Empresas & Filiales Corporativas",
+          "description": "Segmentación multiempresa que organiza las bóvedas de seguridad por unidad de negocio (M4 Construcción, M4 Managers, M4 Padel Tour) con accesos aislados.",
+          "imageUrl": "/projects/m4locker/04_empresas_corporativas.png"
+        },
+        {
+          "title": "Bitácora & Registro de Auditoría en Tiempo Real",
+          "description": "Sistema de logging y trazabilidad donde se auditan todas las operaciones de visualización, creación, modificación y eliminación de credenciales con marca de tiempo y usuario.",
+          "imageUrl": "/projects/m4locker/05_auditoria_seguridad.png"
+        }
+      ]
+    },
+    {
+      "id": "proj-m4padelclub",
+      "title": "M4 Padel Club — Reservas de Canchas en Tiempo Real & Gestión Deportiva",
+      "shortDescription": "Plataforma web para clubes de pádel con cuadrícula interactiva de reservas por franjas horarias, gestión de pistas, directorio de jugadores, partidos abiertos por nivel y módulo de caja/recepción.",
+      "fullDescription": "Sistema integral de reservas y operaciones para clubes de pádel. Proporciona a los deportistas una experiencia fluida para reservar canchas, consultar torneos y sumarse a partidos abiertos nivelados. En el área de administración, incorpora una grilla horaria interactiva en tiempo real, gestión técnica de pistas (tipo de superficie, iluminación, mantenimiento), administración de socios y módulo de caja para cobros en recepción.",
+      "coverImage": "/projects/m4padelclub/03_cuadricula_reservas_pistas.png",
+      "role": "Desarrollador Web Fullstack",
+      "period": "2025 - 2026",
+      "liveUrl": "https://mediumturquoise-quail-960315.hostingersite.com",
+      "githubUrl": "https://github.com/moisesisaiaso",
+      "technologies": [
+        { "name": "React", "category": "frontend" },
+        { "name": "TypeScript", "category": "frontend" },
+        { "name": "Tailwind CSS", "category": "frontend" },
+        { "name": "Vite", "category": "frontend" },
+        { "name": "Node.js", "category": "backend" },
+        { "name": "Express", "category": "backend" },
+        { "name": "PostgreSQL", "category": "database" },
+        { "name": "Cloudinary", "category": "cloud" },
+        { "name": "Hostinger", "category": "devops" },
+        { "name": "Git & GitHub", "category": "tool" }
+      ],
+      "sections": [
+        {
+          "title": "Portal Público del Club & Cartelera de Partidos",
+          "description": "Página inicial pública con información institucional del club, buscador de partidos por nivel o fecha, torneos activos y acceso rápido a reservas.",
+          "imageUrl": "/projects/m4padelclub/01_portal_publico_club.png"
+        },
+        {
+          "title": "Control de Acceso & Autenticación de Usuarios",
+          "description": "Formulario de inicio de sesión seguro con redirección por roles (interfaz para deportistas y panel avanzado para staff/administradores).",
+          "imageUrl": "/projects/m4padelclub/02_login_modal.png"
+        },
+        {
+          "title": "Cuadrícula Interactiva de Reservas de Pistas",
+          "description": "Matriz horaria en tiempo real para visualizar la disponibilidad de canchas, estado de ocupación, selección de bloques de juego y confirmación de turnos.",
+          "imageUrl": "/projects/m4padelclub/03_cuadricula_reservas_pistas.png"
+        },
+        {
+          "title": "Módulo de Gestión & Mantenimiento de Pistas",
+          "description": "Panel administrativo para configurar el estado de cada cancha (techada, panorámica, cristal, iluminación), tarifas diferenciadas y bloqueos por mantenimiento.",
+          "imageUrl": "/projects/m4padelclub/04_gestion_pistas.png"
+        },
+        {
+          "title": "Gestión de Jugadores & Socios del Club",
+          "description": "Directorio completo de deportistas registrados con categorización por nivel de juego, saldo de cuenta, historial de reservas y opciones de contacto.",
+          "imageUrl": "/projects/m4padelclub/05_gestion_jugadores.png"
+        }
+      ]
+    }
+  ]
+}

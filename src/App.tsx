@@ -17,9 +17,18 @@ import { CVPage4 } from './components/CVPage4';
 import { CVPage5 } from './components/CVPage5';
 import { CertificateModal } from './components/CertificateModal';
 import { ProjectModal } from './components/ProjectModal';
-import { exportToPdf } from './utils/pdfExport';
+import { ProfilePhotoModal } from './components/ProfilePhotoModal';
+import { PdfProgressModal } from './components/PdfProgressModal';
+import { PdfDownloadOptionsModal } from './components/PdfDownloadOptionsModal';
+import {
+  exportToPdf,
+  downloadOrExportPdf,
+  initBackgroundPdfPreload,
+  PdfQualityMode,
+} from './utils/pdfExport';
 import { preloadAllCVImages } from './utils/imagePreloader';
 import { useScrollReveal } from './hooks/useScrollReveal';
+import avatarImg from './assets/images/avatar.jpeg';
 
 interface PageMeta {
   num: number;
@@ -70,14 +79,23 @@ const PAGES_META: PageMeta[] = [
 export default function App() {
   const [selectedCertificate, setSelectedCertificate] = useState<CertificateItem | null>(null);
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
   const [exportStep, setExportStep] = useState('');
+  const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
+  const [isPdfOptionsModalOpen, setIsPdfOptionsModalOpen] = useState(false);
+  const [currentPdfMode, setCurrentPdfMode] = useState<PdfQualityMode>('original_hd');
+  const [pdfFileSizeFormatted, setPdfFileSizeFormatted] = useState<string | undefined>();
+  const [pdfProgress, setPdfProgress] = useState(0);
+  const [pdfStep, setPdfStep] = useState('Iniciando descarga...');
+  const [isPdfComplete, setIsPdfComplete] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [activePage, setActivePage] = useState(1);
 
-  // Preload all critical images immediately on startup
+  // Preload all critical images and silently compile PDF in the background
   useEffect(() => {
     preloadAllCVImages(cvData);
+    initBackgroundPdfPreload();
   }, []);
 
   // High-performance smooth scroll reveal
@@ -122,19 +140,46 @@ export default function App() {
     setSelectedProject(null);
   };
 
-  const handleDownloadPdf = async () => {
+  const handleDownloadPdf = async (mode: PdfQualityMode = 'original_hd') => {
+    setCurrentPdfMode(mode);
+    setPdfFileSizeFormatted(undefined);
     setIsExporting(true);
-    setExportStep('Iniciando captura de alta resolución...');
+    setIsPdfModalOpen(true);
+    setPdfProgress(10);
+    setPdfStep(
+      mode === 'compact_8mb'
+        ? 'Iniciando compilación optimizada para portales (≤ 8 MB)...'
+        : 'Iniciando compilación de alta definición (HD)...'
+    );
+    setIsPdfComplete(false);
 
-    const success = await exportToPdf((step) => {
+    const success = await downloadOrExportPdf(mode, ({ progress, step, isComplete, fileSizeFormatted }) => {
+      setPdfProgress(progress);
+      setPdfStep(step);
       setExportStep(step);
+      if (fileSizeFormatted) {
+        setPdfFileSizeFormatted(fileSizeFormatted);
+      }
+      if (isComplete) {
+        setIsPdfComplete(true);
+      }
     });
 
     setIsExporting(false);
     setExportStep('');
     if (success) {
-      showToast('¡El archivo PDF ha sido generado y descargado exitosamente!');
+      setIsPdfComplete(true);
+      setPdfProgress(100);
+      showToast(
+        mode === 'compact_8mb'
+          ? '¡PDF optimizado (≤ 8 MB) descargado exitosamente!'
+          : '¡PDF Alta Definición (HD) descargado exitosamente!'
+      );
+      setTimeout(() => {
+        setIsPdfModalOpen(false);
+      }, 1600);
     } else {
+      setIsPdfModalOpen(false);
       showToast('Se completó el proceso de exportación.');
     }
   };
@@ -181,6 +226,7 @@ export default function App() {
       {/* Top Bar with Brand Title, Page Jumps & Download PDF Button */}
       <Navbar
         onDownloadPdf={handleDownloadPdf}
+        onOpenPdfOptions={() => setIsPdfOptionsModalOpen(true)}
         onNativePrint={handleNativePrint}
         isExporting={isExporting}
         exportStep={exportStep}
@@ -258,6 +304,7 @@ export default function App() {
                   data={cvData}
                   onOpenCertificateModal={handleOpenCertificateModal}
                   onOpenProjectModal={handleOpenProjectModal}
+                  onOpenProfilePhotoModal={() => setIsProfileModalOpen(true)}
                 />
               </div>
             </div>
@@ -418,7 +465,7 @@ export default function App() {
       {/* Floating Action Button for Mobile PDF Download */}
       <div className="no-print fixed bottom-6 right-6 z-30 sm:hidden">
         <button
-          onClick={handleDownloadPdf}
+          onClick={() => setIsPdfOptionsModalOpen(true)}
           disabled={isExporting}
           className="flex items-center gap-2 px-4 py-3 rounded-full bg-[#2C4A6F] text-white font-semibold text-xs shadow-xl active:scale-95 disabled:opacity-50 cursor-pointer"
         >
@@ -439,6 +486,33 @@ export default function App() {
       <ProjectModal
         project={selectedProject}
         onClose={handleCloseProjectModal}
+      />
+
+      {/* Enlarged Profile Photo Modal */}
+      <ProfilePhotoModal
+        isOpen={isProfileModalOpen}
+        onClose={() => setIsProfileModalOpen(false)}
+        avatarSrc={avatarImg}
+        personalInfo={cvData.personal}
+      />
+
+      {/* PDF Download Options Modal (<= 8 MB vs Full HD) */}
+      <PdfDownloadOptionsModal
+        isOpen={isPdfOptionsModalOpen}
+        onClose={() => setIsPdfOptionsModalOpen(false)}
+        onSelectOption={(mode) => handleDownloadPdf(mode)}
+        onNativePrint={handleNativePrint}
+      />
+
+      {/* PDF Download Progress Modal */}
+      <PdfProgressModal
+        isOpen={isPdfModalOpen}
+        progress={pdfProgress}
+        step={pdfStep}
+        isComplete={isPdfComplete}
+        mode={currentPdfMode}
+        fileSizeFormatted={pdfFileSizeFormatted}
+        onClose={() => setIsPdfModalOpen(false)}
       />
 
       {/* Toast Notification */}

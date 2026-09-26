@@ -13,10 +13,13 @@ import {
   Award,
   Layers,
   Sparkles,
+  FileCheck,
 } from 'lucide-react';
+import { PdfQualityMode } from '../utils/pdfExport';
 
 interface NavbarProps {
-  onDownloadPdf: () => void;
+  onDownloadPdf: (mode?: PdfQualityMode) => void;
+  onOpenPdfOptions?: () => void;
   onNativePrint: () => void;
   isExporting: boolean;
   exportStep: string;
@@ -25,6 +28,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({
   onDownloadPdf,
+  onOpenPdfOptions,
   onNativePrint,
   isExporting,
   exportStep,
@@ -120,7 +124,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               {isExporting ? (
                 <>
                   <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                  <span>Exportando...</span>
+                  <span>Descargando...</span>
                 </>
               ) : (
                 <>
@@ -134,45 +138,78 @@ export const Navbar: React.FC<NavbarProps> = ({
             {/* Dropdown Options */}
             {dropdownOpen && (
               <div
-                className="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-xl border border-slate-200 py-1.5 z-50 animate-in fade-in slide-in-from-top-2"
+                className="absolute right-0 mt-2 w-80 bg-white rounded-2xl shadow-2xl border border-slate-200 py-2 z-50 animate-in fade-in slide-in-from-top-2"
                 onMouseLeave={() => setDropdownOpen(false)}
               >
+                {/* Option 1: Full HD Quality (Primary / Recommended high resolution) */}
                 <button
                   onClick={() => {
                     setDropdownOpen(false);
-                    onDownloadPdf();
+                    onDownloadPdf('original_hd');
                   }}
-                  className="w-full text-left px-4 py-2.5 hover:bg-slate-50 flex items-start gap-3 transition-colors text-xs cursor-pointer"
+                  className="w-full text-left px-4 py-2.5 hover:bg-blue-50/60 flex items-start gap-3 transition-colors text-xs cursor-pointer group"
                 >
-                  <div className="w-7 h-7 rounded-lg bg-blue-50 text-[#2C4A6F] flex items-center justify-center shrink-0 mt-0.5">
-                    <Download className="w-3.5 h-3.5" />
+                  <div className="w-8 h-8 rounded-xl bg-blue-50 text-[#2C4A6F] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs group-hover:bg-blue-100">
+                    <Award className="w-4 h-4 text-[#2C4A6F]" />
                   </div>
-                  <div>
-                    <span className="font-semibold text-slate-800 block">
-                      Descarga Directa (Archivo .pdf)
-                    </span>
-                    <span className="text-[11px] text-slate-500 block leading-tight">
-                      Genera el archivo con las 5 páginas en alta resolución
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className="font-bold text-slate-800 group-hover:text-[#2C4A6F]">
+                        PDF Alta Definición (HD)
+                      </span>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-100 text-[#2C4A6F]">
+                        Full HD
+                      </span>
+                    </div>
+                    <span className="text-[11px] text-slate-500 block leading-tight mt-0.5">
+                      Máxima resolución 2x (300 DPI) para pantallas 4K o impresión gráfica profesional.
                     </span>
                   </div>
                 </button>
 
+                {/* Option 2: Compact <= 8 MB (At the end, without Recomendado) */}
+                <button
+                  onClick={() => {
+                    setDropdownOpen(false);
+                    onDownloadPdf('compact_8mb');
+                  }}
+                  className="w-full text-left px-4 py-2.5 hover:bg-emerald-50/60 flex items-start gap-3 transition-colors text-xs border-t border-slate-100 cursor-pointer group"
+                >
+                  <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0 mt-0.5 shadow-2xs group-hover:bg-emerald-200">
+                    <Sparkles className="w-4 h-4 text-emerald-700" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <span className="font-bold text-slate-800 group-hover:text-emerald-900">
+                        PDF Optimizado para Portales
+                      </span>
+                      <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-600 text-white shadow-2xs">
+                        ≤ 8 MB
+                      </span>
+                    </div>
+                    <span className="text-[11px] text-slate-500 block leading-tight mt-0.5">
+                      Para plataformas de empleo (LinkedIn, Computrabajo, ATS) con límite máximo de 8 MB.
+                    </span>
+                  </div>
+                </button>
+
+                {/* Option 3: Native Browser Print */}
                 <button
                   onClick={() => {
                     setDropdownOpen(false);
                     onNativePrint();
                   }}
-                  className="w-full text-left px-4 py-2.5 hover:bg-slate-50 flex items-start gap-3 transition-colors text-xs border-t border-slate-100 cursor-pointer"
+                  className="w-full text-left px-4 py-2 hover:bg-slate-50 flex items-start gap-3 transition-colors text-xs border-t border-slate-100 cursor-pointer"
                 >
-                  <div className="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
-                    <Printer className="w-3.5 h-3.5" />
+                  <div className="w-8 h-8 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center shrink-0 mt-0.5">
+                    <Printer className="w-4 h-4" />
                   </div>
                   <div>
                     <span className="font-semibold text-slate-800 block">
                       Imprimir / Guardar como PDF
                     </span>
                     <span className="text-[11px] text-slate-500 block leading-tight">
-                      Calidad vectorial nativa del navegador
+                      Cuadro de diálogo nativo del navegador
                     </span>
                   </div>
                 </button>
@@ -180,10 +217,16 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </div>
 
-          {/* Mobile Download Quick Action */}
+          {/* Mobile Download Quick Action: Opens Options Modal */}
           <button
             disabled={isExporting}
-            onClick={onDownloadPdf}
+            onClick={() => {
+              if (onOpenPdfOptions) {
+                onOpenPdfOptions();
+              } else {
+                onDownloadPdf('compact_8mb');
+              }
+            }}
             className="sm:hidden flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-white bg-[#2C4A6F] active:bg-[#233D5D] rounded-xl shadow-xs transition-transform active:scale-95 disabled:opacity-60 cursor-pointer"
             aria-label="Descargar PDF"
           >
@@ -240,27 +283,55 @@ export const Navbar: React.FC<NavbarProps> = ({
           </div>
 
           {/* Quick PDF Actions on Mobile Drawer */}
-          <div className="pt-2 border-t border-slate-100 flex gap-2">
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onDownloadPdf();
-              }}
-              disabled={isExporting}
-              className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl bg-[#2C4A6F] text-white text-xs font-semibold shadow-xs active:scale-95 transition-all cursor-pointer"
-            >
-              <Download className="w-4 h-4" />
-              <span>Descargar Archivo PDF</span>
-            </button>
+          <div className="pt-2 border-t border-slate-100 space-y-2">
+            <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider px-1">
+              Descargar Curriculum Vitae
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onDownloadPdf('original_hd');
+                }}
+                disabled={isExporting}
+                className="flex-1 flex items-center justify-between px-3 py-2.5 rounded-xl bg-[#2C4A6F] text-white text-xs font-semibold shadow-xs active:scale-95 transition-all cursor-pointer"
+              >
+                <div className="flex items-center gap-2">
+                  <Award className="w-4 h-4" />
+                  <span>PDF Alta Definición</span>
+                </div>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-900/60 font-bold">
+                  Full HD
+                </span>
+              </button>
+
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onDownloadPdf('compact_8mb');
+                }}
+                disabled={isExporting}
+                className="flex-1 flex items-center justify-between px-3 py-2.5 rounded-xl bg-emerald-700 text-white text-xs font-semibold shadow-xs active:scale-95 transition-all cursor-pointer"
+              >
+                <div className="flex items-center gap-2">
+                  <Sparkles className="w-4 h-4" />
+                  <span>PDF Portales</span>
+                </div>
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-900/60 font-bold">
+                  ≤ 8 MB
+                </span>
+              </button>
+            </div>
+
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onNativePrint();
               }}
-              className="flex items-center justify-center gap-1.5 px-3 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200 active:scale-95 transition-all cursor-pointer"
-              title="Imprimir"
+              className="w-full flex items-center justify-center gap-1.5 py-2 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold border border-slate-200 active:scale-95 transition-all cursor-pointer"
             >
               <Printer className="w-4 h-4" />
+              <span>Imprimir / Guardar como PDF del sistema</span>
             </button>
           </div>
         </div>

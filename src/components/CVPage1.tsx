@@ -13,6 +13,7 @@ import {
   ExternalLink,
   ChevronDown,
   ChevronUp,
+  ZoomIn,
 } from 'lucide-react';
 import { CVData, CertificateItem, ProjectItem } from '../types/cv';
 import { RatingDots } from './RatingDots';
@@ -24,12 +25,14 @@ interface CVPage1Props {
   data: CVData;
   onOpenCertificateModal: (cert: CertificateItem) => void;
   onOpenProjectModal?: (project: ProjectItem) => void;
+  onOpenProfilePhotoModal?: () => void;
 }
 
 export const CVPage1: React.FC<CVPage1Props> = ({ 
   data, 
   onOpenCertificateModal, 
-  onOpenProjectModal 
+  onOpenProjectModal,
+  onOpenProfilePhotoModal,
 }) => {
   const [showAllMobileSkills, setShowAllMobileSkills] = useState(false);
   const mobileSkills = showAllMobileSkills ? data.skills : data.skills.slice(0, 10);
@@ -59,16 +62,35 @@ export const CVPage1: React.FC<CVPage1Props> = ({
         <div className="col-span-12 md:col-span-4 flex flex-col space-y-6">
           {/* Header Card matching exact PDF layout: unified card with profile photo, name and role */}
           <div className="bg-[#2C4A6F] text-white p-5 sm:p-6 lg:p-7 rounded-md shadow-sm text-center flex flex-col items-center">
-            {/* Profile Photo cleanly housed inside the card with white border */}
-            <div className="w-36 h-36 sm:w-40 sm:h-40 lg:w-44 lg:h-44 rounded-full overflow-hidden border-4 border-white shadow-md bg-slate-100 mb-3.5 shrink-0">
+            {/* Profile Photo cleanly housed inside the card with white border + interactive hover zoom */}
+            <div
+              onClick={() => onOpenProfilePhotoModal?.()}
+              className="group/avatar relative w-36 h-36 sm:w-40 sm:h-40 lg:w-44 lg:h-44 rounded-full overflow-hidden border-4 border-white shadow-md bg-slate-100 mb-3.5 shrink-0 cursor-pointer transition-transform duration-300 hover:scale-[1.03] hover:shadow-xl hover:border-blue-200"
+              title="Clic para ver foto en tamaño completo"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onOpenProfilePhotoModal?.();
+                }
+              }}
+            >
               <img
                 src={avatarImg}
                 alt="Moisés Isaías Ortíz Gracia"
-                className="w-full h-full object-cover object-center scale-105"
+                className="w-full h-full object-cover object-center scale-105 group-hover/avatar:scale-110 transition-transform duration-300"
                 loading="eager"
                 decoding="async"
                 referrerPolicy="no-referrer"
               />
+              {/* Interactive Hover Overlay */}
+              <div className="absolute inset-0 bg-slate-950/45 opacity-0 group-hover/avatar:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center text-white backdrop-blur-[1px] no-print">
+                <ZoomIn className="w-6 h-6 text-white drop-shadow-md animate-pulse" />
+                <span className="text-[10px] font-bold mt-1 bg-slate-950/80 px-2.5 py-0.5 rounded-full shadow-xs tracking-wide">
+                  Ampliar foto
+                </span>
+              </div>
             </div>
 
             <h1 className="text-xl sm:text-2xl lg:text-[25px] font-bold tracking-tight leading-tight">

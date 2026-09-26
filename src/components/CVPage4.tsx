@@ -4,6 +4,7 @@ import { TechIcon } from './TechIcon';
 import { RatingDots } from './RatingDots';
 import { SkillMiniIcon } from './SkillMiniIcon';
 import { Layers, ExternalLink, Github, Eye, Heart, Sparkles } from 'lucide-react';
+import { HobbyIcon, AptitudeIcon } from './HobbyAptitudeIcon';
 
 interface CVPage4Props {
   data: CVData;
@@ -19,7 +20,7 @@ export const CVPage4: React.FC<CVPage4Props> = ({ data, onOpenProjectModal }) =>
   return (
     <div
       id="cv-page-2"
-      className="cv-sheet relative w-full max-w-5xl xl:max-w-6xl 2xl:max-w-[1240px] min-h-[auto] lg:min-h-[1130px] mx-auto bg-white text-slate-800 shadow-xl rounded-sm p-5 sm:p-8 lg:p-10 font-sans border border-slate-200/80 print:shadow-none print:border-none print:m-0 print:p-8 print:max-w-none print:w-full print:min-h-screen flex flex-col justify-between overflow-hidden"
+      className="cv-sheet relative w-full max-w-5xl xl:max-w-6xl 2xl:max-w-[1240px] min-h-[auto] lg:min-h-[1420px] xl:min-h-[1480px] mx-auto bg-white text-slate-800 shadow-xl rounded-sm p-5 sm:p-8 lg:p-10 font-sans border border-slate-200/80 print:shadow-none print:border-none print:m-0 print:p-8 print:max-w-none print:w-full print:min-h-screen flex flex-col justify-between"
     >
       {/* Decorative Top Accent Polygon matching Curriculum Aesthetic */}
       <div
@@ -66,8 +67,8 @@ export const CVPage4: React.FC<CVPage4Props> = ({ data, onOpenProjectModal }) =>
             <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-[13.5px] text-slate-700">
               {data.hobbies.map((hobby, idx) => (
                 <li key={idx} className="flex items-center gap-2.5">
-                  <span className="w-2.5 h-2.5 bg-[#385D8A] inline-block shrink-0 rounded-[1px]" />
-                  <span className="font-medium text-slate-800">{hobby}</span>
+                  <HobbyIcon name={hobby} />
+                  <span className="font-semibold text-slate-800">{hobby}</span>
                 </li>
               ))}
             </ul>
@@ -81,8 +82,8 @@ export const CVPage4: React.FC<CVPage4Props> = ({ data, onOpenProjectModal }) =>
             <ul className="space-y-2.5 sm:space-y-3 text-xs sm:text-[13.5px] text-slate-700">
               {data.aptitudes.map((apt, idx) => (
                 <li key={idx} className="flex items-start gap-2.5">
-                  <span className="w-2.5 h-2.5 bg-[#385D8A] inline-block shrink-0 rounded-[1px] mt-1" />
-                  <span className="font-medium text-slate-800 leading-snug">{apt}</span>
+                  <AptitudeIcon name={apt} className="mt-0.5" />
+                  <span className="font-semibold text-slate-800 leading-snug">{apt}</span>
                 </li>
               ))}
             </ul>
@@ -107,48 +108,51 @@ export const CVPage4: React.FC<CVPage4Props> = ({ data, onOpenProjectModal }) =>
           </div>
 
           {/* Projects List */}
-          <div className="space-y-3.5 flex-1">
+          <div className="space-y-4 flex-1">
             {projects.map((project, index) => (
               <div
                 key={project.id}
                 onClick={() => onOpenProjectModal(project)}
-                className={`group border border-slate-200 rounded-xl p-3.5 sm:p-4 bg-slate-50/50 hover:bg-white hover:border-[#2C4A6F]/60 hover:shadow-md transition-all cursor-pointer flex flex-col lg:flex-row portrait:flex-col print:flex-row gap-3.5 sm:gap-4 reveal-on-scroll stagger-${index + 1}`}
+                className={`group border border-slate-200 rounded-xl p-3.5 sm:p-4.5 bg-slate-50/50 hover:bg-white hover:border-[#2C4A6F]/60 hover:shadow-lg transition-all cursor-pointer flex flex-col gap-3.5 sm:gap-4 reveal-on-scroll stagger-${index + 1}`}
               >
-                {/* Complete Uncropped Screenshot with Browser Frame: Stacks on top in mobile & tablet portrait, side-by-side on wide screens */}
-                <div className="relative w-full lg:w-52 xl:w-60 2xl:w-64 portrait:w-full print:w-52 aspect-[16/10] rounded-xl overflow-hidden bg-slate-950 border border-slate-700/80 shadow-sm flex flex-col shrink-0">
+                {/* Complete Screenshot with Proportional Screen Simulator: Viewport has exact 16:10 aspect ratio matching 1440x900 screenshots */}
+                <div className="relative w-full rounded-xl overflow-hidden bg-slate-950 border border-slate-700/80 shadow-md flex flex-col shrink-0">
                   {/* Browser top-bar */}
-                  <div className="h-5 bg-slate-900 border-b border-slate-800 px-2 flex items-center justify-between select-none shrink-0">
-                    <div className="flex items-center gap-1">
-                      <div className="w-1.5 h-1.5 rounded-full bg-rose-500/80" />
-                      <div className="w-1.5 h-1.5 rounded-full bg-amber-500/80" />
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/80" />
+                  <div className="h-6 sm:h-7 bg-slate-900 border-b border-slate-800 px-3 flex items-center justify-between select-none shrink-0">
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-2 h-2 rounded-full bg-rose-500/90" />
+                      <div className="w-2 h-2 rounded-full bg-amber-500/90" />
+                      <div className="w-2 h-2 rounded-full bg-emerald-500/90" />
                     </div>
-                    <span className="text-[9px] text-slate-400 font-mono truncate max-w-[130px]">
-                      {project.liveUrl ? project.liveUrl.replace('https://', '') : 'web preview'}
-                    </span>
+                    {/* Realistic URL bar */}
+                    <div className="flex items-center gap-1.5 bg-slate-950/80 border border-slate-800 rounded-md px-2.5 py-0.5 max-w-[280px] w-full mx-2 text-[10px] text-slate-300 font-mono truncate">
+                      <span className="text-emerald-400 text-[9px]">🔒</span>
+                      <span className="truncate">{project.liveUrl ? project.liveUrl.replace('https://', '') : 'web preview'}</span>
+                    </div>
+                    <span className="text-[10px] text-slate-500 font-mono">1440×900</span>
                   </div>
 
-                  {/* Fully displayed screenshot */}
-                  <div className="relative flex-1 w-full bg-slate-950 flex items-center justify-center p-1 overflow-hidden">
+                  {/* Screen Viewport: Exact aspect-[16/10] fills 100% width and 100% height edge-to-edge */}
+                  <div className="relative w-full aspect-[16/10] bg-slate-950 overflow-hidden">
                     <img
                       src={project.coverImage}
                       alt={project.title}
-                      className="w-full h-full object-contain object-center group-hover:scale-[1.03] transition-transform duration-300"
+                      className="w-full h-full object-cover block group-hover:scale-[1.01] transition-transform duration-300"
                       loading="eager"
                       decoding="async"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="no-print pdf-hide absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-white bg-[#2C4A6F] px-2.5 py-1 rounded shadow-xs">
-                        <Eye className="w-3 h-3" />
-                        <span>Ver interfaces</span>
+                    <div className="no-print pdf-hide absolute inset-0 bg-slate-950/45 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[1px]">
+                      <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-[#2C4A6F] px-3.5 py-1.5 rounded-lg shadow-lg border border-white/20">
+                        <Eye className="w-3.5 h-3.5" />
+                        <span>Ver interfaces y detalles</span>
                       </span>
                     </div>
                   </div>
                 </div>
 
                 {/* Project Info & Technical Stack */}
-                <div className="flex-1 flex flex-col justify-between space-y-1.5 min-w-0">
+                <div className="flex-1 flex flex-col justify-between space-y-2 min-w-0">
                   <div>
                     <div className="flex flex-wrap items-center justify-between gap-1 mb-1">
                       <h3 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-[#2C4A6F] transition-colors leading-snug">
@@ -162,16 +166,30 @@ export const CVPage4: React.FC<CVPage4Props> = ({ data, onOpenProjectModal }) =>
                     <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px] text-slate-600 mb-1 font-medium">
                       <span className="text-[#2C4A6F] font-semibold">{project.role}</span>
                       {project.liveUrl && (
-                        <span className="flex items-center gap-1 text-blue-700 hover:underline">
-                          <ExternalLink className="w-3 h-3 shrink-0" />
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 font-semibold underline underline-offset-2 decoration-blue-500/80 transition-colors"
+                          title={`Visitar sitio web: ${project.liveUrl}`}
+                        >
+                          <ExternalLink className="w-3 h-3 shrink-0 text-blue-600" />
                           <span className="break-all">{project.liveUrl.replace('https://', '')}</span>
-                        </span>
+                        </a>
                       )}
                       {project.githubUrl && (
-                        <span className="flex items-center gap-1 text-slate-600">
-                          <Github className="w-3 h-3 shrink-0" />
+                        <a
+                          href={project.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          className="inline-flex items-center gap-1 text-slate-700 hover:text-blue-800 font-semibold underline underline-offset-2 decoration-slate-400 hover:decoration-blue-700 transition-colors"
+                          title="Ver repositorio en GitHub"
+                        >
+                          <Github className="w-3 h-3 shrink-0 text-slate-600" />
                           <span>github.com/moisesisaiaso</span>
-                        </span>
+                        </a>
                       )}
                     </div>
 

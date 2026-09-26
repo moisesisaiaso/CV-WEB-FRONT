@@ -21,6 +21,7 @@ import {
   CheckCircle2,
   Heart,
   Github,
+  ZoomIn,
 } from 'lucide-react';
 import { CVData, CertificateItem, ProjectItem } from '../types/cv';
 import { RatingDots } from './RatingDots';
@@ -33,12 +34,14 @@ interface CVMobileContinuousViewProps {
   data: CVData;
   onOpenCertificateModal: (cert: CertificateItem) => void;
   onOpenProjectModal: (project: ProjectItem) => void;
+  onOpenProfilePhotoModal?: () => void;
 }
 
 export const CVMobileContinuousView: React.FC<CVMobileContinuousViewProps> = ({
   data,
   onOpenCertificateModal,
   onOpenProjectModal,
+  onOpenProfilePhotoModal,
 }) => {
   const universityCert = data.certificates.find((c) => c.id === 'cert-universidad') || data.certificates[0];
   const projectM4 = data.projects?.find((p) => p.id === 'proj-m4managers') || data.projects?.[0];
@@ -50,15 +53,34 @@ export const CVMobileContinuousView: React.FC<CVMobileContinuousViewProps> = ({
         <div className="bg-white rounded-2xl p-5 sm:p-7 shadow-md border border-slate-200/90 space-y-6">
           {/* Header Card with Profile Photo */}
           <div className="bg-gradient-to-br from-[#2C4A6F] to-[#1E334D] text-white p-6 rounded-xl shadow-sm text-center flex flex-col items-center">
-            <div className="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-white/90 shadow-md bg-slate-100 mb-3.5 shrink-0">
+            <div
+              onClick={() => onOpenProfilePhotoModal?.()}
+              className="group/avatar relative w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-white/90 shadow-md bg-slate-100 mb-3.5 shrink-0 cursor-pointer transition-transform duration-300 hover:scale-[1.03] hover:shadow-xl hover:border-blue-200"
+              title="Toca para ver foto en tamaño completo"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  onOpenProfilePhotoModal?.();
+                }
+              }}
+            >
               <img
                 src={avatarImg}
                 alt={data.personal.name}
-                className="w-full h-full object-cover object-center scale-105"
+                className="w-full h-full object-cover object-center scale-105 group-hover/avatar:scale-110 transition-transform duration-300"
                 loading="eager"
                 decoding="async"
                 referrerPolicy="no-referrer"
               />
+              {/* Interactive Hover Overlay */}
+              <div className="absolute inset-0 bg-slate-950/45 opacity-0 group-hover/avatar:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center text-white backdrop-blur-[1px] no-print">
+                <ZoomIn className="w-5 h-5 text-white drop-shadow-md" />
+                <span className="text-[9px] font-bold mt-1 bg-slate-950/80 px-2 py-0.5 rounded-full shadow-xs">
+                  Ampliar foto
+                </span>
+              </div>
             </div>
             <h1 className="text-xl sm:text-2xl font-bold tracking-tight leading-tight">
               {data.personal.name}
@@ -384,35 +406,37 @@ export const CVMobileContinuousView: React.FC<CVMobileContinuousViewProps> = ({
               <div
                 key={project.id}
                 onClick={() => onOpenProjectModal(project)}
-                className="group border border-slate-200/90 rounded-xl p-3.5 sm:p-4 bg-slate-50/70 hover:bg-white hover:border-[#2C4A6F]/60 hover:shadow-md transition-all cursor-pointer flex flex-col sm:flex-row gap-3.5"
+                className="group border border-slate-200/90 rounded-xl p-3.5 sm:p-4 bg-slate-50/70 hover:bg-white hover:border-[#2C4A6F]/60 hover:shadow-md transition-all cursor-pointer flex flex-col gap-3.5"
               >
-                {/* Complete Uncropped Screenshot with Browser Frame */}
-                <div className="relative w-full sm:w-48 aspect-[16/10] rounded-xl overflow-hidden bg-slate-950 border border-slate-700/80 shadow-sm flex flex-col shrink-0">
+                {/* Realistic Browser Frame: Viewport has exact 16:10 aspect ratio matching 1440x900 screenshots */}
+                <div className="relative w-full rounded-xl overflow-hidden bg-slate-950 border border-slate-700/80 shadow-md flex flex-col shrink-0">
                   {/* Browser top-bar */}
-                  <div className="h-5 bg-slate-900 border-b border-slate-800 px-2 flex items-center justify-between select-none shrink-0">
+                  <div className="h-5 sm:h-6 bg-slate-900 border-b border-slate-800 px-2.5 flex items-center justify-between select-none shrink-0">
                     <div className="flex items-center gap-1">
-                      <div className="w-1.5 h-1.5 rounded-full bg-rose-500/80" />
-                      <div className="w-1.5 h-1.5 rounded-full bg-amber-500/80" />
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/80" />
+                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-rose-500/80" />
+                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-500/80" />
+                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-500/80" />
                     </div>
-                    <span className="text-[9px] text-slate-400 font-mono truncate max-w-[120px]">
-                      {project.liveUrl ? project.liveUrl.replace('https://', '') : 'web preview'}
-                    </span>
+                    <div className="flex items-center gap-1 bg-slate-950/80 border border-slate-800 rounded px-2 py-0.5 text-[9px] text-slate-300 font-mono truncate max-w-[180px]">
+                      <span className="text-emerald-400 text-[8px]">🔒</span>
+                      <span className="truncate">{project.liveUrl ? project.liveUrl.replace('https://', '') : 'web preview'}</span>
+                    </div>
+                    <span className="text-[9px] text-slate-500 font-mono">1440×900</span>
                   </div>
 
-                  {/* Fully displayed screenshot */}
-                  <div className="relative flex-1 w-full bg-slate-950 flex items-center justify-center p-1 overflow-hidden">
+                  {/* Exact aspect-[16/10] viewport: 100% width and 100% height filled edge-to-edge */}
+                  <div className="relative w-full aspect-[16/10] bg-slate-950 overflow-hidden">
                     <img
                       src={project.coverImage}
                       alt={project.title}
-                      className="w-full h-full object-contain object-center group-hover:scale-[1.03] transition-transform duration-300"
+                      className="w-full h-full object-cover block group-hover:scale-[1.01] transition-transform duration-300"
                       loading="eager"
                       decoding="async"
                       referrerPolicy="no-referrer"
                     />
                     <div className="absolute inset-0 bg-slate-950/40 opacity-90 sm:opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                      <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-white bg-[#2C4A6F] px-2 py-0.5 rounded shadow-xs">
-                        <Eye className="w-3 h-3" />
+                      <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-white bg-[#2C4A6F] px-2.5 py-1 rounded shadow-xs">
+                        <Eye className="w-3.5 h-3.5" />
                         <span>Ver interfaces</span>
                       </span>
                     </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { CVData, CertificateItem } from '../types/cv';
 import { Award, ExternalLink, Globe, CheckCircle2, Eye } from 'lucide-react';
+import { HobbyIcon, AptitudeIcon } from './HobbyAptitudeIcon';
 
 interface CVPage3Props {
   data: CVData;
@@ -8,14 +9,20 @@ interface CVPage3Props {
 }
 
 export const CVPage3: React.FC<CVPage3Props> = ({ data, onOpenCertificateModal }) => {
+  const certMasterCSS = data.certificates.find((c) => c.id === 'cert-master-css');
+  const certGitTerminal = data.certificates.find((c) => c.id === 'cert-git-terminal');
   const certReparacion = data.certificates.find((c) => c.id === 'cert-reparacion-pc');
   const certScrum = data.certificates.find((c) => c.id === 'cert-scrum');
   const certIA = data.certificates.find((c) => c.id === 'cert-ia-pedagogica');
+  const certFibra = data.certificates.find((c) => c.id === 'cert-fibra-optica');
 
   const page5Certs = [
+    certMasterCSS,
+    certGitTerminal,
     certReparacion,
     certScrum,
     certIA,
+    certFibra,
   ].filter((c): c is CertificateItem => c !== undefined);
 
   return (
@@ -39,7 +46,7 @@ export const CVPage3: React.FC<CVPage3Props> = ({ data, onOpenCertificateModal }
         aria-hidden="true"
       />
 
-      <div className="w-full flex-1 flex flex-col space-y-5">
+      <div className="w-full flex-1 flex flex-col space-y-4">
         {/* Section Header */}
         <div id="seccion-certificados-p2" data-section="seccion-certificados" className="scroll-mt-24 border-b-2 border-[#2C4A6F] pb-1.5 mb-2">
           <div className="flex items-center justify-between">
@@ -55,18 +62,18 @@ export const CVPage3: React.FC<CVPage3Props> = ({ data, onOpenCertificateModal }
           </div>
         </div>
 
-        {/* Full-width Certificates List - 3 Cards with Visual Previews & Explicit URLs */}
-        <div className="space-y-4 flex-1">
+        {/* Full-width Certificates List - 6 Cards with Visual Previews & Explicit URLs */}
+        <div className="flex flex-col gap-5 sm:gap-6">
           {page5Certs.map((cert, index) => (
             <div
               key={cert.id}
-              className={`p-3.5 sm:p-4 rounded-xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-[#2C4A6F]/50 transition-all shadow-2xs flex flex-col sm:flex-row gap-3.5 sm:gap-4 items-start reveal-on-scroll stagger-${(index % 3) + 1}`}
+              className={`cert-card p-2.5 sm:p-3 lg:p-3.5 rounded-xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-[#2C4A6F]/50 transition-all shadow-2xs flex flex-col sm:flex-row gap-3 sm:gap-3.5 items-start sm:items-center reveal-on-scroll stagger-${(index % 6) + 1}`}
             >
               {/* Certificate Image Thumbnail Preview */}
               {cert.imageUrl && (
                 <div
                   onClick={() => onOpenCertificateModal(cert)}
-                  className="group/thumb relative w-full sm:w-40 md:w-48 h-36 sm:h-32 shrink-0 rounded-lg overflow-hidden border border-slate-200 bg-slate-100 shadow-2xs hover:shadow-md hover:border-[#2C4A6F] transition-all cursor-pointer"
+                  className="cert-thumb group/thumb relative w-full sm:w-36 md:w-44 lg:w-48 h-30 sm:h-26 md:h-28 shrink-0 rounded-lg overflow-hidden border border-slate-200 bg-slate-100 shadow-2xs hover:shadow-md hover:border-[#2C4A6F] transition-all cursor-pointer"
                   title="Clic para ver vista previa ampliada"
                 >
                   <img
@@ -127,7 +134,7 @@ export const CVPage3: React.FC<CVPage3Props> = ({ data, onOpenCertificateModal }
                     title="Abrir credencial oficial"
                   >
                     <span>{cert.link}</span>
-                    <ExternalLink className="w-3 h-3 text-slate-400 shrink-0 no-print" />
+                    <ExternalLink className="w-3 h-3 text-blue-600 shrink-0" />
                   </a>
                   <button
                     type="button"
@@ -153,8 +160,8 @@ export const CVPage3: React.FC<CVPage3Props> = ({ data, onOpenCertificateModal }
             <ul className="space-y-2.5 text-xs sm:text-[13.5px] text-slate-700">
               {data.hobbies.map((hobby, idx) => (
                 <li key={idx} className="flex items-center gap-2.5">
-                  <span className="w-2.5 h-2.5 bg-[#385D8A] inline-block shrink-0 rounded-[1px]" />
-                  <span className="font-medium text-slate-800">{hobby}</span>
+                  <HobbyIcon name={hobby} />
+                  <span className="font-semibold text-slate-800">{hobby}</span>
                 </li>
               ))}
             </ul>
@@ -168,8 +175,8 @@ export const CVPage3: React.FC<CVPage3Props> = ({ data, onOpenCertificateModal }
             <ul className="space-y-2.5 text-xs sm:text-[13.5px] text-slate-700">
               {data.aptitudes.map((apt, idx) => (
                 <li key={idx} className="flex items-start gap-2.5">
-                  <span className="w-2.5 h-2.5 bg-[#385D8A] inline-block shrink-0 rounded-[1px] mt-1" />
-                  <span className="font-medium text-slate-800 leading-snug">{apt}</span>
+                  <AptitudeIcon name={apt} className="mt-0.5" />
+                  <span className="font-semibold text-slate-800 leading-snug">{apt}</span>
                 </li>
               ))}
             </ul>

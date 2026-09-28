@@ -14,7 +14,9 @@
     "portfolio": "portafolio-moisesisaiaso.netlify.app",
     "portfolioUrl": "https://portafolio-moisesisaiaso.netlify.app",
     "github": "github.com/moisesisaiaso",
-    "githubUrl": "https://github.com/moisesisaiaso"
+    "githubUrl": "https://github.com/moisesisaiaso",
+    "linkedin": "linkedin.com/in/moisés-0rtíz-gracia-97a0a515a",
+    "linkedinUrl": "https://www.linkedin.com/in/mois%C3%A9s-0rt%C3%ADz-gracia-97a0a515a"
   },
   "profileSummary": "Apasionado por el desarrollo web, especializado en el stack PERN (PostgreSQL, Express, React, Node.js). Disfruto creando soluciones innovadoras que mejoren la experiencia del usuario y contribuyan al éxito de los proyectos en los que participo.",
   "education": [
@@ -97,18 +99,6 @@
       "imageUrl": "/certificates/cert-universidad.png"
     },
     {
-      "id": "cert-fibra-optica",
-      "title": "Instalación, mantenimiento y reparación de redes de fibra óptica GPON FTTH",
-      "period": "jul 2025",
-      "issuer": "CPA (Capacitación Profesional Avanzada)",
-      "duration": "40 horas",
-      "description": "Certificado con una duración de 40 horas, el curso se desarrollo en las instalaciones de CPA en la ciudad de Quito, un curso práctico desde las instalaciones y en campo abierto.",
-      "link": "https://mega.nz/file/wu00VLpK#6Vafrlr7AiJFpywbJMV25u6rEAoTkmzBBW4Z36JK9Kk",
-      "category": "telecom",
-      "code": "CPA-FO-GPON-7721",
-      "imageUrl": "/certificates/cert-fibra-optica.jpg"
-    },
-    {
       "id": "cert-academlo-fullstack",
       "title": "Desarrollador web fullstack - bootcamp",
       "period": "abr 2024",
@@ -125,7 +115,7 @@
       "title": "Desarrollador backend - bootcamp Academlo",
       "period": "dic 2023",
       "issuer": "Academlo",
-      "duration": "Bootcamp Especializado",
+      "duration": "180 horas",
       "description": "Certificación en Desarrollo Backend con Node.js, Express y PostgreSQL",
       "link": "https://mega.nz/file/tn91lBZI#au3Nxdhbj6D7B7Fz79EtuOFLEj8bSc2UnBq82Mo2Dsk",
       "category": "web-development",
@@ -137,7 +127,7 @@
       "title": "Desarrollador frontend - bootcamp Academlo",
       "period": "sep 2023",
       "issuer": "Academlo",
-      "duration": "Bootcamp Especializado",
+      "duration": "180 horas",
       "description": "Experiencia en desarrollo de interfaces de usuario utilizando React y su ecosistema.",
       "link": "https://mega.nz/file/Bill1K4T#R2bR4_rrUr-DGlVYVaAqE_HBrVED7MfhcWEYeQ5EBkE",
       "category": "web-development",
@@ -149,12 +139,48 @@
       "title": "Fundamentos de la programación - bootcamp",
       "period": "jun 2023",
       "issuer": "Academlo",
-      "duration": "Bootcamp Inicial",
+      "duration": "180 horas",
       "description": "Certificación en Fundamentos de Programación Web, enfocado en el uso de HTML, CSS y JavaScript.",
       "link": "https://mega.nz/file/pn1iBD5R#kVv6hFCyncWyFIu6IsI3cZZP2DTiP4pLdK2m80dxZ08",
       "category": "web-development",
       "code": "ACD-FUND-2023-0630",
       "imageUrl": "/certificates/cert-academlo-fundamentos.png"
+    },
+    {
+      "id": "cert-sololearn-html",
+      "title": "HTML Course Certificate",
+      "period": "ene 2021",
+      "issuer": "Sololearn",
+      "duration": "40 horas",
+      "description": "Certificación oficial en HTML emitida por Sololearn, validando comprensión teórica y práctica en estructuración semántica de páginas web, elementos y maquetación.",
+      "link": "https://mega.nz/file/tm0HGRLK#pr5hOZoUJ8MQXFtwhO7EqWGm7xCFkHJuuRUj8PI2boU",
+      "category": "web-development",
+      "code": "CT-XBXDNWNL",
+      "imageUrl": "/certificates/cert-sololearn-html.jpg"
+    },
+    {
+      "id": "cert-master-css",
+      "title": "Master en CSS: Responsive, SASS, Flexbox, Grid",
+      "period": "oct 2025",
+      "issuer": "Udemy",
+      "duration": "20.5 horas",
+      "description": "Certificación de especialización avanzada en diseño web responsivo, preprocesador SASS, maquetación moderna con Flexbox y CSS Grid, animaciones y arquitectura CSS impartido por Víctor Robles.",
+      "link": "https://mega.nz/file/dncnGIJT#OcIResGlw2UF9bSrI28Sy6TQHeJLDwqeEpbb4nFHF3o",
+      "category": "web-development",
+      "code": "UC-20978409-087f-4d24-a767-fe81e8c78bb9",
+      "imageUrl": "/certificates/cert-master-css.jpg"
+    },
+    {
+      "id": "cert-git-terminal",
+      "title": "Curso de Git y la Terminal de comandos - Para programadores",
+      "period": "sep 2026",
+      "issuer": "Udemy",
+      "duration": "3 horas",
+      "description": "Certificación en control de versiones con Git y gestión avanzada de la terminal de comandos para desarrolladores, flujos de trabajo en equipo, ramas, fusiones y repositorios remotos impartido por Víctor Robles.",
+      "link": "https://mega.nz/file/Ju1hnYhA#WiVvmr_7359S7J6DTHnzUiJQjDzzONtPK4bhH4srRTk",
+      "category": "web-development",
+      "code": "UC-f2965ef8-8f80-4560-a212-756acb4c2653",
+      "imageUrl": "/certificates/cert-git-terminal.jpg"
     },
     {
       "id": "cert-reparacion-pc",
@@ -191,6 +217,18 @@
       "category": "ai",
       "code": "UNEXPO-IA-2025-0158",
       "imageUrl": "/certificates/cert-ia-pedagogica.png"
+    },
+    {
+      "id": "cert-fibra-optica",
+      "title": "Instalación, mantenimiento y reparación de redes de fibra óptica GPON FTTH",
+      "period": "jul 2025",
+      "issuer": "CPA (Capacitación Profesional Avanzada)",
+      "duration": "40 horas",
+      "description": "Certificado con una duración de 40 horas, el curso se desarrollo en las instalaciones de CPA en la ciudad de Quito, un curso práctico desde las instalaciones y en campo abierto.",
+      "link": "https://mega.nz/file/wu00VLpK#6Vafrlr7AiJFpywbJMV25u6rEAoTkmzBBW4Z36JK9Kk",
+      "category": "telecom",
+      "code": "CPA-FO-GPON-7721",
+      "imageUrl": "/certificates/cert-fibra-optica.jpg"
     }
   ],
   "skills": [

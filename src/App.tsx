@@ -92,7 +92,7 @@ export default function App() {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [activePage, setActivePage] = useState(1);
 
-  // Preload all critical images and silently compile PDF in the background
+  // Preload critical images and initiate background PDF preparation after page load
   useEffect(() => {
     preloadAllCVImages(cvData);
     initBackgroundPdfPreload();

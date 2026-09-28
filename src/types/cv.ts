@@ -14,6 +14,8 @@ export interface PersonalData {
   portfolioUrl: string;
   github: string;
   githubUrl: string;
+  linkedin: string;
+  linkedinUrl: string;
 }
 
 export interface SkillItem {

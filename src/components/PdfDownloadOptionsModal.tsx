@@ -46,13 +46,13 @@ export const PdfDownloadOptionsModal: React.FC<PdfDownloadOptionsModalProps> = (
                 <div className="space-y-1">
                   <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-blue-50 text-[#2C4A6F] text-[11px] font-bold border border-blue-100">
                     <FileCheck className="w-3.5 h-3.5" />
-                    <span>Descarga de Documento Oficial</span>
+                    <span>Documento Oficial Certificado</span>
                   </div>
                   <h3 className="text-lg sm:text-xl font-bold text-slate-900 leading-snug">
-                    Selecciona el formato de PDF
+                    Descargar Curriculum Vitae en PDF
                   </h3>
                   <p className="text-xs text-slate-500 leading-relaxed">
-                    Elige la opción que mejor se adapte a tus necesidades de postulación o impresión.
+                    Ambos formatos cuentan con optimización dual: alta estética visual para reclutadores humanos y capa de datos estructurada para filtros ATS e IA.
                   </p>
                 </div>
 
@@ -63,6 +63,21 @@ export const PdfDownloadOptionsModal: React.FC<PdfDownloadOptionsModalProps> = (
                 >
                   <X className="w-4 h-4" />
                 </button>
+              </div>
+
+              {/* ATS Guarantee Banner */}
+              <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/90 text-xs text-slate-600 flex items-start gap-2.5">
+                <div className="w-6 h-6 rounded-md bg-[#2C4A6F]/10 text-[#2C4A6F] flex items-center justify-center shrink-0 mt-0.5">
+                  <Sparkles className="w-3.5 h-3.5 text-[#2C4A6F]" />
+                </div>
+                <div className="space-y-0.5">
+                  <span className="font-bold text-slate-800 block text-[11.5px]">
+                    100% Compatible con Sistemas ATS y Modelos de IA
+                  </span>
+                  <p className="text-[11px] text-slate-500 leading-snug">
+                    Incluye metadatos ISO embebidos, capa de texto nativo continuo seleccionable (sin OCR falso) y enlaces activos verificables.
+                  </p>
+                </div>
               </div>
 
               {/* Options Cards */}

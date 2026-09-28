@@ -163,6 +163,20 @@ async function compilePdfBlob(
     compress: true,
   });
 
+  // Configure PDF Document Metadata (ISO 32000-1) for ATS & AI Parsers
+  try {
+    pdf.setLanguage('es-ES');
+    pdf.setProperties({
+      title: 'Moisés Isaías Ortíz Gracia - Desarrollador Web Fullstack',
+      author: 'Moisés Isaías Ortíz Gracia',
+      subject: 'Curriculum Vitae Profesional de Desarrollador Web Full Stack. Tecnologías: React, Next.js, TypeScript, Node.js, Express, PostgreSQL, MongoDB, Docker, Git, Tailwind CSS.',
+      keywords: 'Desarrollador Web Full Stack, Frontend, Backend, React, Next.js, TypeScript, JavaScript, Node.js, Express, PostgreSQL, MongoDB, Git, Docker, Tailwind CSS, HTML5, CSS3, REST API, GraphQL, Curriculum Vitae, Resume, Portafolio, Moisés Ortíz Gracia',
+      creator: 'Moisés Isaías Ortíz Gracia CV Engine',
+    });
+  } catch (_) {
+    // Non-blocking metadata fallback
+  }
+
   const pdfWidth = pdf.internal.pageSize.getWidth();
   const pdfHeight = pdf.internal.pageSize.getHeight();
 
@@ -188,11 +202,117 @@ async function compilePdfBlob(
       useCORS: true,
       logging: false,
       backgroundColor: '#FFFFFF',
-      windowWidth: 1120,
+      windowWidth: 1280,
+      width: 1120,
+      height: 1584,
       scrollX: 0,
       scrollY: 0,
       onclone: (clonedDoc) => {
         clonedDoc.body.classList.add('pdf-export-mode');
+
+        // Inject explicit high-specificity typography style block directly into cloned document
+        // to guarantee html2canvas renders larger, highly readable fonts on all pages
+        const printTypographyStyle = clonedDoc.createElement('style');
+        printTypographyStyle.setAttribute('id', 'pdf-typography-override');
+        printTypographyStyle.textContent = `
+          .pdf-export-mode .text-\\[10px\\],
+          .pdf-export-mode .text-\\[11px\\] {
+            font-size: 13.5px !important;
+            line-height: 1.4 !important;
+          }
+          .pdf-export-mode .text-xs {
+            font-size: 14.5px !important;
+            line-height: 1.45 !important;
+          }
+          .pdf-export-mode .text-\\[13px\\],
+          .pdf-export-mode .text-\\[13\\.5px\\] {
+            font-size: 15px !important;
+            line-height: 1.48 !important;
+          }
+          .pdf-export-mode .text-sm,
+          .pdf-export-mode .text-\\[14px\\],
+          .pdf-export-mode .text-\\[14\\.5px\\] {
+            font-size: 16px !important;
+            line-height: 1.55 !important;
+          }
+          .pdf-export-mode .text-base,
+          .pdf-export-mode .text-\\[15px\\] {
+            font-size: 17.5px !important;
+            line-height: 1.45 !important;
+          }
+          .pdf-export-mode .text-lg {
+            font-size: 20px !important;
+            line-height: 1.35 !important;
+          }
+          .pdf-export-mode .text-xl {
+            font-size: 23px !important;
+            line-height: 1.3 !important;
+          }
+          .pdf-export-mode .text-2xl,
+          .pdf-export-mode .text-\\[24px\\],
+          .pdf-export-mode .text-\\[25px\\],
+          .pdf-export-mode .text-\\[26px\\] {
+            font-size: 27px !important;
+            line-height: 1.25 !important;
+          }
+          .pdf-export-mode a[href] {
+            font-size: inherit !important;
+          }
+          .pdf-export-mode #cv-page-2 .aspect-\\[16\\/10\\] {
+            height: 218px !important;
+            max-height: 218px !important;
+            aspect-ratio: auto !important;
+          }
+          .pdf-export-mode #cv-page-3 .aspect-\\[16\\/10\\] {
+            height: 396px !important;
+            max-height: 396px !important;
+            aspect-ratio: auto !important;
+          }
+          .pdf-export-mode #cv-page-4 .cert-card,
+          .pdf-export-mode #cv-page-5 .cert-card {
+            margin-bottom: 0 !important;
+            flex: none !important;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            background-color: rgba(248, 250, 252, 0.85) !important;
+          }
+          .pdf-export-mode #cv-page-4 .cert-card {
+            padding: 12px 18px !important;
+            gap: 18px !important;
+          }
+          .pdf-export-mode #cv-page-4 .cert-thumb {
+            width: 210px !important;
+            min-width: 210px !important;
+            max-width: 210px !important;
+            height: 140px !important;
+            min-height: 140px !important;
+            max-height: 140px !important;
+          }
+          .pdf-export-mode #cv-page-5 .cert-card {
+            padding: 10px 16px !important;
+            gap: 16px !important;
+          }
+          .pdf-export-mode #cv-page-5 .cert-thumb {
+            width: 195px !important;
+            min-width: 195px !important;
+            max-width: 195px !important;
+            height: 130px !important;
+            min-height: 130px !important;
+            max-height: 130px !important;
+          }
+          .pdf-export-mode #cv-page-4 div:has(> .cert-card),
+          .pdf-export-mode #cv-page-4 .flex-col {
+            gap: 30px !important;
+            justify-content: flex-start !important;
+          }
+          .pdf-export-mode #cv-page-5 div:has(> .cert-card),
+          .pdf-export-mode #cv-page-5 .flex-col {
+            gap: 27px !important;
+            justify-content: flex-start !important;
+          }
+        `;
+        clonedDoc.head.appendChild(printTypographyStyle);
 
         const reveals = clonedDoc.querySelectorAll<HTMLElement>('.reveal-on-scroll');
         reveals.forEach((el) => {
@@ -208,7 +328,7 @@ async function compilePdfBlob(
         const clonedPageRect = clonedPage.getBoundingClientRect();
         if (clonedPageRect.width <= 0 || clonedPageRect.height <= 0) return;
 
-        // 1. Extract clickable hyperlinks with exact coordinates relative to clonedPage
+        // 1. Extract clickable hyperlinks with exact coordinates per text line box
         const anchors = clonedPage.querySelectorAll<HTMLAnchorElement>('a[href]');
         anchors.forEach((anchor) => {
           if (anchor.closest('.no-print') || anchor.closest('.pdf-hide')) return;
@@ -227,25 +347,30 @@ async function compilePdfBlob(
             cleanHref = 'https://' + cleanHref;
           }
 
-          const rect = anchor.getBoundingClientRect();
-          if (rect.width <= 0 || rect.height <= 0) return;
+          // Use getClientRects to support multi-line or inline wrapped links precisely
+          const rects = anchor.getClientRects();
+          const targetRects =
+            rects.length > 0 ? Array.from(rects) : [anchor.getBoundingClientRect()];
 
-          const relX = (rect.left - clonedPageRect.left) / clonedPageRect.width;
-          const relY = (rect.top - clonedPageRect.top) / clonedPageRect.height;
-          const relW = rect.width / clonedPageRect.width;
-          const relH = rect.height / clonedPageRect.height;
+          targetRects.forEach((rect) => {
+            if (rect.width <= 0 || rect.height <= 0) return;
 
-          // Provide precise hit target with slight vertical padding
-          pageLinks.push({
-            x: relX * pdfWidth,
-            y: Math.max(0, relY * pdfHeight - 0.3),
-            w: relW * pdfWidth,
-            h: Math.max(relH * pdfHeight + 0.6, 3.8),
-            url: cleanHref,
+            const relX = (rect.left - clonedPageRect.left) / clonedPageRect.width;
+            const relY = (rect.top - clonedPageRect.top) / clonedPageRect.height;
+            const relW = rect.width / clonedPageRect.width;
+            const relH = rect.height / clonedPageRect.height;
+
+            pageLinks.push({
+              x: relX * pdfWidth,
+              y: relY * pdfHeight,
+              w: relW * pdfWidth,
+              h: Math.max(relH * pdfHeight, 3.2),
+              url: cleanHref,
+            });
           });
         });
 
-        // 2. Extract visible text nodes for invisible selectable/highlightable text layer
+        // 2. Extract visible text nodes with exact per-line positions for selectable & highlightable text layer
         try {
           const walker = clonedDoc.createTreeWalker(clonedPage, NodeFilter.SHOW_TEXT, {
             acceptNode: (node) => {
@@ -256,8 +381,18 @@ async function compilePdfBlob(
               if (
                 parent.closest('.no-print') ||
                 parent.closest('.pdf-hide') ||
+                parent.closest('.md\\:hidden') ||
                 parent.tagName === 'SCRIPT' ||
                 parent.tagName === 'STYLE'
+              ) {
+                return NodeFilter.FILTER_REJECT;
+              }
+              const computedStyle = clonedDoc.defaultView?.getComputedStyle(parent);
+              if (
+                computedStyle &&
+                (computedStyle.display === 'none' ||
+                  computedStyle.visibility === 'hidden' ||
+                  parseFloat(computedStyle.opacity) === 0)
               ) {
                 return NodeFilter.FILTER_REJECT;
               }
@@ -267,35 +402,93 @@ async function compilePdfBlob(
 
           let currentNode: Node | null;
           while ((currentNode = walker.nextNode())) {
-            const val = currentNode.nodeValue?.trim();
-            if (!val) continue;
+            const rawVal = currentNode.nodeValue;
+            if (!rawVal || !rawVal.trim()) continue;
             const parent = currentNode.parentElement;
             if (!parent) continue;
+
+            const computedStyle = clonedDoc.defaultView?.getComputedStyle(parent);
+            const fontSizePx = computedStyle ? parseFloat(computedStyle.fontSize) : 12;
+            const fontSizePt = Math.max(6, Math.min(22, fontSizePx * 0.75));
 
             const range = clonedDoc.createRange();
             range.selectNodeContents(currentNode);
             const rects = range.getClientRects();
 
-            for (let r = 0; r < rects.length; r++) {
-              const rect = rects[r];
-              if (rect.width <= 0 || rect.height <= 0) continue;
+            if (rects.length <= 1) {
+              // Single-line text
+              const rect = rects.length === 1 ? rects[0] : range.getBoundingClientRect();
+              if (rect.width > 0 && rect.height > 0) {
+                const relX = (rect.left - clonedPageRect.left) / clonedPageRect.width;
+                const relY = (rect.top - clonedPageRect.top) / clonedPageRect.height;
 
-              const relX = (rect.left - clonedPageRect.left) / clonedPageRect.width;
-              const relY = (rect.top - clonedPageRect.top) / clonedPageRect.height;
-              const relW = rect.width / clonedPageRect.width;
+                pageTexts.push({
+                  text: rawVal.trim(),
+                  x: relX * pdfWidth,
+                  y: relY * pdfHeight,
+                  fontSizePt,
+                });
+              }
+            } else {
+              // Multi-line text (e.g. paragraphs, long descriptions, summaries)
+              // Group words by their line top coordinate so every line is accurately selectable
+              const tokens = rawVal.split(/(\s+)/);
+              let currentLineWords: string[] = [];
+              let currentLineRect: { left: number; top: number; right: number; bottom: number } | null = null;
+              let charOffset = 0;
 
-              const computedStyle = clonedDoc.defaultView?.getComputedStyle(parent);
-              const fontSizePx = computedStyle ? parseFloat(computedStyle.fontSize) : 12;
-              const fontSizePt = Math.max(6, Math.min(22, fontSizePx * 0.75));
+              for (let t = 0; t < tokens.length; t++) {
+                const token = tokens[t];
+                const tokenLen = token.length;
+                if (!token.trim()) {
+                  charOffset += tokenLen;
+                  continue;
+                }
 
-              pageTexts.push({
-                text: val,
-                x: relX * pdfWidth,
-                y: relY * pdfHeight,
-                fontSizePt,
-                maxWidth: relW * pdfWidth,
-              });
-              break;
+                try {
+                  const wordRange = clonedDoc.createRange();
+                  wordRange.setStart(currentNode, charOffset);
+                  wordRange.setEnd(currentNode, charOffset + tokenLen);
+                  const wRects = wordRange.getClientRects();
+
+                  if (wRects.length > 0) {
+                    const wr = wRects[0];
+                    if (!currentLineRect || Math.abs(wr.top - currentLineRect.top) > 4.5) {
+                      // New line detected
+                      if (currentLineWords.length > 0 && currentLineRect) {
+                        const relX = (currentLineRect.left - clonedPageRect.left) / clonedPageRect.width;
+                        const relY = (currentLineRect.top - clonedPageRect.top) / clonedPageRect.height;
+                        pageTexts.push({
+                          text: currentLineWords.join(' '),
+                          x: relX * pdfWidth,
+                          y: relY * pdfHeight,
+                          fontSizePt,
+                        });
+                      }
+                      currentLineWords = [token];
+                      currentLineRect = { left: wr.left, top: wr.top, right: wr.right, bottom: wr.bottom };
+                    } else {
+                      currentLineWords.push(token);
+                      currentLineRect.right = Math.max(currentLineRect.right, wr.right);
+                      currentLineRect.bottom = Math.max(currentLineRect.bottom, wr.bottom);
+                    }
+                  }
+                } catch (_) {
+                  // Fallback for character boundary ranges
+                }
+                charOffset += tokenLen;
+              }
+
+              if (currentLineWords.length > 0 && currentLineRect) {
+                const relX = (currentLineRect.left - clonedPageRect.left) / clonedPageRect.width;
+                const relY = (currentLineRect.top - clonedPageRect.top) / clonedPageRect.height;
+                pageTexts.push({
+                  text: currentLineWords.join(' '),
+                  x: relX * pdfWidth,
+                  y: relY * pdfHeight,
+                  fontSizePt,
+                });
+              }
             }
           }
         } catch (err) {
@@ -319,17 +512,26 @@ async function compilePdfBlob(
     // 1. Draw crisp graphical canvas representation
     pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
 
-    // 2. Render invisible selectable/highlightable text layer
+    // 2. Render invisible selectable/highlightable text layer matching visual positions
+    // Sort text tokens in strict natural reading order (top-to-bottom, left-to-right with line grouping tolerance)
+    // so ATS parsers (pdftotext, Workday, Lever, Taleo) reconstruct coherent paragraphs without jumping across blocks
     if (pageTexts.length > 0) {
+      pageTexts.sort((a, b) => {
+        const yDiff = a.y - b.y;
+        if (Math.abs(yDiff) > 2.5) {
+          return yDiff;
+        }
+        return a.x - b.x;
+      });
+
       pdf.saveGraphicsState();
       pdf.setTextColor(0, 0, 0);
-      pageTexts.forEach(({ text, x, y, fontSizePt, maxWidth }) => {
+      pageTexts.forEach(({ text, x, y, fontSizePt }) => {
         try {
           pdf.setFontSize(fontSizePt);
           pdf.text(text, x, y, {
             baseline: 'top',
             renderingMode: 'invisible',
-            maxWidth: maxWidth && maxWidth > 4 ? maxWidth : undefined,
           });
         } catch (_) {
           // ignore individual node bounds mismatch
@@ -342,6 +544,21 @@ async function compilePdfBlob(
     pageLinks.forEach(({ x, y, w, h, url }) => {
       pdf.link(x, y, w, h, { url });
     });
+
+    // 4. Normalize PDF link annotation coordinates so llx <= urx and lly <= ury (ISO 32000-1 compliance)
+    const pageInfo = (pdf.internal as any).getCurrentPageInfo?.();
+    if (pageInfo?.pageContext?.annotations) {
+      pageInfo.pageContext.annotations.forEach((annot: any) => {
+        if (annot.type === 'link' && annot.finalBounds) {
+          const yTop = parseFloat(annot.finalBounds.y);
+          const yBottom = parseFloat(annot.finalBounds.h);
+          if (yTop > yBottom) {
+            annot.finalBounds.y = yBottom.toFixed(4);
+            annot.finalBounds.h = yTop.toFixed(4);
+          }
+        }
+      });
+    }
   }
 
   notifyProgress(mode, 92, 'Generando archivo binario optimizado...', false);
@@ -365,19 +582,24 @@ async function compilePdfBlob(
 }
 
 /**
- * Initializes silent background PDF compilation when the page loads.
- * Preloads the primary High-Definition (HD) version first so downloads are instantaneous.
+ * Initializes background PDF compilation ONLY after the entire webpage is completely
+ * rendered and the browser has entered an idle state.
+ * This guarantees zero visual lag or blank screens for the user, while keeping PDF downloads instant.
  */
 export function initBackgroundPdfPreload(): void {
   if (typeof window === 'undefined') return;
   if (cachedBlobs.original_hd || activeCompilationPromises.original_hd) return;
 
-  const startTask = () => {
+  const runPreload = () => {
+    // Double check that DOM elements exist and are fully populated
     const p1 = document.getElementById('cv-page-1');
-    if (!p1) {
-      setTimeout(startTask, 400);
+    const p5 = document.getElementById('cv-page-5');
+    if (!p1 || !p5) {
+      setTimeout(runPreload, 1500);
       return;
     }
+
+    if (cachedBlobs.original_hd || activeCompilationPromises.original_hd) return;
 
     activeCompilationPromises.original_hd = compilePdfBlob('original_hd')
       .catch((err) => {
@@ -389,12 +611,26 @@ export function initBackgroundPdfPreload(): void {
       });
   };
 
-  if ('requestIdleCallback' in window) {
-    setTimeout(() => {
-      (window as any).requestIdleCallback(startTask, { timeout: 3500 });
-    }, 1200);
+  const scheduleWhenIdle = () => {
+    // Wait until browser is completely idle
+    if ('requestIdleCallback' in window) {
+      (window as any).requestIdleCallback(
+        () => {
+          setTimeout(runPreload, 1500);
+        },
+        { timeout: 8000 }
+      );
+    } else {
+      setTimeout(runPreload, 3500);
+    }
+  };
+
+  if (document.readyState === 'complete') {
+    // Document already fully loaded, schedule idle work
+    scheduleWhenIdle();
   } else {
-    setTimeout(startTask, 1200);
+    // Wait for window 'load' event so all fonts, stylesheets and images finish loading first
+    window.addEventListener('load', scheduleWhenIdle, { once: true });
   }
 }
 

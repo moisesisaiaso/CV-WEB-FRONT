@@ -15,7 +15,7 @@ export const CVPage5: React.FC<CVPage5Props> = ({ data, onOpenProjectModal }) =>
   return (
     <div
       id="cv-page-3"
-      className="cv-sheet relative w-full max-w-5xl xl:max-w-6xl 2xl:max-w-[1240px] min-h-[auto] lg:min-h-[1600px] xl:min-h-[1750px] mx-auto bg-white text-slate-800 shadow-xl rounded-sm p-5 sm:p-8 lg:p-10 font-sans border border-slate-200/80 print:shadow-none print:border-none print:m-0 print:p-8 print:max-w-none print:w-full print:min-h-screen flex flex-col justify-between"
+      className="cv-sheet relative w-full max-w-5xl xl:max-w-6xl 2xl:max-w-[1240px] min-h-[auto] lg:min-h-[1130px] mx-auto bg-white text-slate-800 shadow-xl rounded-sm p-5 sm:p-8 lg:p-10 font-sans border border-slate-200/80 print:shadow-none print:border-none print:m-0 print:p-8 print:max-w-none print:w-full print:min-h-screen flex flex-col justify-between"
     >
       {/* Decorative Bottom Left Geometric Accent Polygon matching Curriculum Aesthetic */}
       <div
@@ -100,16 +100,30 @@ export const CVPage5: React.FC<CVPage5Props> = ({ data, onOpenProjectModal }) =>
                   <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-600 mb-2 font-medium">
                     <span className="text-[#2C4A6F] font-bold">{project.role}</span>
                     {project.liveUrl && (
-                      <span className="flex items-center gap-1 text-blue-700 hover:underline">
-                        <ExternalLink className="w-3.5 h-3.5 shrink-0" />
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1 text-blue-700 hover:text-blue-900 font-semibold underline underline-offset-2 decoration-blue-500/80 transition-colors"
+                        title={`Visitar sitio web: ${project.liveUrl}`}
+                      >
+                        <ExternalLink className="w-3.5 h-3.5 shrink-0 text-blue-600" />
                         <span className="break-all">{project.liveUrl.replace('https://', '')}</span>
-                      </span>
+                      </a>
                     )}
                     {project.githubUrl && (
-                      <span className="flex items-center gap-1 text-slate-600">
-                        <Github className="w-3.5 h-3.5 shrink-0" />
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="inline-flex items-center gap-1 text-slate-700 hover:text-blue-800 font-semibold underline underline-offset-2 decoration-slate-400 hover:decoration-blue-700 transition-colors"
+                        title="Ver repositorio en GitHub"
+                      >
+                        <Github className="w-3.5 h-3.5 shrink-0 text-slate-600" />
                         <span>github.com/moisesisaiaso</span>
-                      </span>
+                      </a>
                     )}
                   </div>
 

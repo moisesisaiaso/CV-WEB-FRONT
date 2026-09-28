@@ -21,6 +21,7 @@ import {
   CheckCircle2,
   Heart,
   Github,
+  Linkedin,
   ZoomIn,
 } from 'lucide-react';
 import { CVData, CertificateItem, ProjectItem } from '../types/cv';
@@ -28,6 +29,7 @@ import { RatingDots } from './RatingDots';
 import { SkillMiniIcon } from './SkillMiniIcon';
 import { TechIcon } from './TechIcon';
 import { FastTypewriter } from './FastTypewriter';
+import { HobbyIcon, AptitudeIcon } from './HobbyAptitudeIcon';
 import avatarImg from '../assets/images/avatar.jpeg';
 
 interface CVMobileContinuousViewProps {
@@ -200,6 +202,21 @@ export const CVMobileContinuousView: React.FC<CVMobileContinuousViewProps> = ({
                     className="text-blue-700 font-bold underline underline-offset-2 decoration-blue-600 hover:text-blue-900 break-all transition-colors"
                   >
                     {data.personal.github}
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-2.5">
+                <Linkedin className="w-4 h-4 text-[#2C4A6F] shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-[11px] text-slate-400 block font-medium">Perfil LinkedIn</span>
+                  <a
+                    href={data.personal.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-700 font-bold underline underline-offset-2 decoration-blue-600 hover:text-blue-900 break-all transition-colors"
+                  >
+                    {data.personal.linkedin}
                   </a>
                 </div>
               </div>
@@ -563,7 +580,7 @@ export const CVMobileContinuousView: React.FC<CVMobileContinuousViewProps> = ({
             <ul className="space-y-2 text-xs sm:text-[13px] text-slate-700">
               {data.hobbies.map((hobby, idx) => (
                 <li key={idx} className="flex items-center gap-2.5">
-                  <span className="w-2.5 h-2.5 bg-[#2C4A6F] inline-block shrink-0 rounded-[2px]" />
+                  <HobbyIcon name={hobby} />
                   <span className="font-semibold text-slate-800">{hobby}</span>
                 </li>
               ))}
@@ -581,7 +598,7 @@ export const CVMobileContinuousView: React.FC<CVMobileContinuousViewProps> = ({
             <ul className="space-y-2 text-xs sm:text-[13px] text-slate-700">
               {data.aptitudes.map((apt, idx) => (
                 <li key={idx} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                  <AptitudeIcon name={apt} className="mt-0.5" />
                   <span className="font-semibold text-slate-800 leading-snug">{apt}</span>
                 </li>
               ))}

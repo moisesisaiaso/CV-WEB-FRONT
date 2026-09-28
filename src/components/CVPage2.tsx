@@ -8,19 +8,19 @@ interface CVPage2Props {
 }
 
 export const CVPage2: React.FC<CVPage2Props> = ({ data, onOpenCertificateModal }) => {
-  // Page 4 contains the first 5 technical bootcamps & telecom specializations
-  const certFibra = data.certificates.find((c) => c.id === 'cert-fibra-optica');
+  // Page 4 contains the 5 technical bootcamps & web development specializations
   const certFullstack = data.certificates.find((c) => c.id === 'cert-academlo-fullstack');
   const certBackend = data.certificates.find((c) => c.id === 'cert-academlo-backend');
   const certFrontend = data.certificates.find((c) => c.id === 'cert-academlo-frontend');
   const certFundamentos = data.certificates.find((c) => c.id === 'cert-academlo-fundamentos');
+  const certSololearn = data.certificates.find((c) => c.id === 'cert-sololearn-html');
 
   const page4Certs = [
-    certFibra,
     certFullstack,
     certBackend,
     certFrontend,
     certFundamentos,
+    certSololearn,
   ].filter((c): c is CertificateItem => c !== undefined);
 
   return (
@@ -54,17 +54,17 @@ export const CVPage2: React.FC<CVPage2Props> = ({ data, onOpenCertificateModal }
         </div>
 
         {/* Full-width Certificates List - 5 Cards with Visual Previews & Explicit URLs */}
-        <div className="space-y-3 flex-1">
+        <div className="flex flex-col gap-6 sm:gap-7">
           {page4Certs.map((cert, index) => (
             <div
               key={cert.id}
-              className={`p-3 sm:p-3.5 rounded-xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-[#2C4A6F]/50 transition-all shadow-2xs flex flex-col sm:flex-row gap-3 sm:gap-4 items-start reveal-on-scroll stagger-${(index % 5) + 1}`}
+              className={`cert-card p-3 sm:p-3.5 rounded-xl bg-slate-50/70 border border-slate-200/80 hover:bg-white hover:border-[#2C4A6F]/50 transition-all shadow-2xs flex flex-col sm:flex-row gap-3.5 sm:gap-4 items-start sm:items-center reveal-on-scroll stagger-${(index % 5) + 1}`}
             >
               {/* Certificate Image Thumbnail Preview */}
               {cert.imageUrl && (
                 <div
                   onClick={() => onOpenCertificateModal(cert)}
-                  className="group/thumb relative w-full sm:w-36 md:w-44 h-32 sm:h-28 shrink-0 rounded-lg overflow-hidden border border-slate-200 bg-slate-100 shadow-2xs hover:shadow-md hover:border-[#2C4A6F] transition-all cursor-pointer"
+                  className="cert-thumb group/thumb relative w-full sm:w-40 md:w-48 lg:w-52 h-32 sm:h-28 md:h-32 shrink-0 rounded-lg overflow-hidden border border-slate-200 bg-slate-100 shadow-2xs hover:shadow-md hover:border-[#2C4A6F] transition-all cursor-pointer"
                   title="Clic para ver vista previa ampliada"
                 >
                   <img
@@ -125,7 +125,7 @@ export const CVPage2: React.FC<CVPage2Props> = ({ data, onOpenCertificateModal }
                     title="Abrir credencial oficial"
                   >
                     <span>{cert.link}</span>
-                    <ExternalLink className="w-3 h-3 text-slate-400 shrink-0 no-print" />
+                    <ExternalLink className="w-3 h-3 text-blue-600 shrink-0" />
                   </a>
                   <button
                     type="button"

@@ -10,6 +10,7 @@ import {
   Globe,
   Users,
   Github,
+  Linkedin,
   ExternalLink,
   ChevronDown,
   ChevronUp,
@@ -114,7 +115,7 @@ export const CVPage1: React.FC<CVPage1Props> = ({
                 <Mail className="w-4 h-4 text-[#385D8A] shrink-0 mt-0.5" />
                 <a
                   href={`mailto:${data.personal.email}`}
-                  className="hover:text-[#385D8A] transition-colors break-all"
+                  className="text-blue-700 hover:text-blue-900 font-medium underline underline-offset-2 decoration-blue-500/70 hover:decoration-blue-900 break-all transition-colors"
                   title="Enviar correo"
                 >
                   {data.personal.email}
@@ -125,7 +126,8 @@ export const CVPage1: React.FC<CVPage1Props> = ({
                 <Phone className="w-4 h-4 text-[#385D8A] shrink-0 mt-0.5" />
                 <a
                   href={`tel:${data.personal.phone.replace(/\s+/g, '')}`}
-                  className="hover:text-[#385D8A] transition-colors"
+                  className="text-blue-700 hover:text-blue-900 font-medium underline underline-offset-2 decoration-blue-500/70 hover:decoration-blue-900 transition-colors"
+                  title="Llamar o contactar por teléfono"
                 >
                   {data.personal.phone}
                 </a>
@@ -189,6 +191,19 @@ export const CVPage1: React.FC<CVPage1Props> = ({
                   title="Ver perfil de GitHub"
                 >
                   {data.personal.github}
+                </a>
+              </li>
+
+              <li className="flex items-start gap-2.5">
+                <Linkedin className="w-4 h-4 text-[#385D8A] shrink-0 mt-0.5" />
+                <a
+                  href={data.personal.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-700 font-semibold underline underline-offset-2 decoration-blue-600/80 hover:text-blue-900 hover:decoration-blue-900 break-all transition-colors leading-tight"
+                  title="Ver perfil de LinkedIn"
+                >
+                  {data.personal.linkedin}
                 </a>
               </li>
             </ul>
@@ -315,7 +330,7 @@ export const CVPage1: React.FC<CVPage1Props> = ({
                   title="Abrir título universitario oficial"
                 >
                   <span>{universityCert.link}</span>
-                  <ExternalLink className="w-3 h-3 text-slate-400 shrink-0 no-print" />
+                  <ExternalLink className="w-3 h-3 text-blue-600 shrink-0" />
                 </a>
                 <button
                   type="button"
